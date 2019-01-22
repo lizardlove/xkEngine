@@ -1,0 +1,27 @@
+{
+  "name": "xkEngine",
+  "version": "0.0.1",
+  "description": "xk-comic-dt-engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node server.dev.js",
+    "build": "webpack webpack.build.config.js"
+  },
+  "author": "pipiper",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-transform-async-to-generator": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/runtime": "^7.3.0",
+    "babel-loader": "^8.0.5",
+    "express": "^4.16.4",
+    "global": "^4.3.2",
+    "pm2": "^3.2.9",
+    "webpack": "^4.29.0",
+    "webpack-dev-middleware": "^3.5.1",
+    "webpack-hot-middleware": "^2.24.3"
+  }
+}
