@@ -16,6 +16,8 @@ module.exports = {
         publicPath: '/'
     },
 
+    devtool: 'inline-source-map',
+    
     stats: {
         colors: true,
         reasons: true,
