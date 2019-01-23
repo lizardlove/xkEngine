@@ -1,6 +1,10 @@
 export default {
+
     height: window.innerHeight,
     width: window.innerWidth,
+
+    getStyle: window.getComputedStyle,
+
     getChildList(parentEle) {
         var list = [];
         var child = parentEle.childNodes;
@@ -11,6 +15,7 @@ export default {
         }
         return list;
     },
+
     setStyle(el, tf) {
         // css 追加,插入等
         var sty = '';
@@ -23,7 +28,8 @@ export default {
         }
         el.style.cssText += ';' + sty;
     },
-    getRect(el) {
+
+    getStyleRect(el) {
         if (el instanceof SVGElement) {
             var rect = el.getBoundingClientRect();
             return {
@@ -41,4 +47,5 @@ export default {
             };
         }
     }
+
 }

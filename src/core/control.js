@@ -1,7 +1,12 @@
-import Music from './music'
 import Scroll from './scroll'
 import Resource from './resource'
 import utils from './utils'
+
+import Music from './music'
+import Animate from './animate'
+import Swing from './swing'
+import Gif from './gif'
+import Full from './full'
 
 export default class Control {
     constructor(config) {
@@ -16,6 +21,8 @@ export default class Control {
         this.status = 0
 
         this.activeIndex = 0
+
+        this.dpi = 0
         
         this.animateActive = []
         this.animates = {}
@@ -36,8 +43,9 @@ export default class Control {
        //let getStyle = window.getComputedStyle;
 
        let animateBox = ele.firstElementChild || ele.children[0]
-       //let loadBox = animateBox.firstElementChild || animateBox.children[0]
-       let animateContent = loadBox.nextElementSibling || animateBox.children[1]
+       let loadBox = animateBox.firstElementChild || animateBox.children[0]
+       let animateContent =  animateBox.children[1]
+   
        //let otherBox = animateContent.nextElementSibling || animateBox.children[2]
 
        //let otherBoxList = otherBox.querySelectorAll('.ot-page-img')
@@ -46,7 +54,7 @@ export default class Control {
 
        //self.otherItemBox.list = otherBoxList
 
-       //let loadBoxRect = self.utils.getRect(loadBox)
+       //let loadBoxRect = self.utils.getStyleRect(loadBox)
        //let loadHeight = loadBoxRect.height
 
        self.basePoint = animateBox.getAttribute('data-screen')
@@ -62,6 +70,8 @@ export default class Control {
 
         self.pageArray = animateContent.children || self.utils.getChildList(animateContent)
 
+        self.dpi = Math.round((animateContent.getAttribute('data-width') / animateContent.offsetWidth) * 1000) / 1000
+
         //初始页面高度计算
         self._computePanel(animateContent)
 
@@ -70,19 +80,19 @@ export default class Control {
 
         self._computeAnimates(self.animates)
 
+        animateContent.style.height = animateContent.getAttribute('data-boxHeight') + 'px'
+
     }
 
     _computePanel(box) {
 
         let self = this
 
-        let winDpi, width, height
+        let winDpi = self.dpi, width, height
         let pageList, pageLen, pageTop, page, pageChild, pageChildLen, pageChildItem
 
         pageList = box.children || self.utils.getChildList(box)
         pageLen = pageList.length
-
-        winDpi = Math.round((box.getAttribute('data-width') / box.offsetWidth) * 1000) / 1000
 
         width = box.getAttribute('data-width')
         height = box.getAttribute('data-height')
@@ -236,6 +246,8 @@ export default class Control {
                     type: "image",
                     src: src
                 })
+                dom.setAttribute('src', src)
+                dom.removeAttribute('data-src')
             }
         }
         function getConfig(dom, str, i) {
@@ -297,45 +309,176 @@ export default class Control {
         
         let self = this
 
-        let page, pageIndex, pageRect
+        let screenHeight = self.utils.height
+        let page, pageIndex, pageArray = self.pageArray
         let start, end, config, last
 
-        start = end = 0
+        list.forEach( (animate, i) => {
 
-        list.forEach( animate => {
+            start = end = 0
 
             pageIndex = animate.id
-            page = self.pageArray[pageIndex]
+            page = pageArray[pageIndex]
 
             config = animate.config
 
-            switch(config.type) {
-                case 0: {
-                    start = self.utils.getRect(page).top
-                    break
-                }
-                case 1: {
-                    start = self.utils.getRect(animate.ele).top
-                    break
-                }
-                case 2: {
-                    if (last) {
-                        
-                    } else {
-                        start = self.utils.getRect(page).top
+            //起始高度与结束高度计算
+            if (animate.type == "music" && animate.config.music.newTeam) {
+
+                let startPage, endPage, startDelay, endDelay, startRect, endRect
+
+                startPage = animate.config.music.newTeam[0]
+                endPage = animate.config.music.newTeam[1]
+                
+                startPage = !startPage ? pageIndex : pageIndex + startPage
+                endPage = startPage + endPage
+
+                startRect = self.utils.getStyleRect(pageArray[startPage])
+                endRect = self.utils.getStyleRect(pageArray[endPage])
+
+                startDelay = animate.config.music.startTop
+                endDelay = animate.config.music.endTop
+                if (!startDelay) startDelay = 0
+                if (!endDelay) endDelay = 0
+
+                start = startRect.top + startDelay * startRect.height
+                end = endRect.top + endDelay * endRect.height
+
+
+            } else {
+
+                switch (config.type) {
+                    case 0: {
+
+                        start = self.utils.getStyleRect(page).top
+                        break
+                    }
+                    case 1: {
+            
+                        start = self.utils.getStyleRect(page).top + self.utils.getStyleRect(animate.ele).top
+                        break
+                    }
+                    case 2: {
+                        if (last.ele != animate.ele) {
+                            start = self.utils.getStyleRect(page).top
+                        } else {
+                            start = last.top
+                        }
+                        break
+                    }
+                    case 3: {
+                        if (last.ele == animate.ele) {
+                            start = last.bottom
+                        } else {
+                            start = self.utils.getStyleRect(page).top
+                        }
+                         break
+                    }
+                    default: {
+                        start = -1
                         break
                     }
                 }
-                case 3: {}
-                default: {
-                    start = 0
-                    break
+                
+                switch (config.delay) {
+                    case 0: break
+                    case 1: {
+                        start = start + screenHeight * 0.05
+                        break
+                    }
+                    case 2: {
+                        start = start + screenHeight * 0.1
+                        break
+                    }
+                    case 3: {
+                        start = start + screenHeight * 0.2
+                        break
+                    }
+                    case 4: {
+                        start = start + screenHeight * 0.35
+                        break
+                    }
+                    case 5: {
+                        start = start + screenHeight * 0.6
+                        break
+                    }
+                    default: {
+                        start = start + screenHeight * config.delay
+                        break
+                    }
                 }
+    
+                switch (config.speed) {
+                    case 0: {
+                        end = start + screenHeight
+                        break
+                    }
+                    case 1: {
+                        end = start + screenHeight * 0.8
+                        break
+                    }
+                    case 2: {
+                        end = start + screenHeight * 0.6
+                        break
+                    }
+                    case 3: {
+                        end = start + screenHeight * 0.4
+                        break
+                    }
+                    case 4: {
+                        end = start + screenHeight * 0.2
+                    }
+                    default: {
+                        end = start + screenHeight * (config.speed/100)
+                        break
+                    }
+                }
+
             }
+
+            animate.top = Math.round(start)
+            animate.bottom = Math.round(end)
+
+            // switch (animate.type) {
+            //     case 'music': {
+            //         list[i] = new Music(animate)
+            //         break
+            //     }
+            //     case 'animate': {
+            //         list[i] = new Animate(animate)
+            //         break
+            //     }
+            //     case 'gif': {
+            //         list[i] = new Gif(animate)
+            //         break
+            //     }
+            //     case 'swing': {
+            //         list[i] = new Swing(animate)
+            //         break
+            //     }
+            //     case 'full': {
+            //         list[i] = new Full(animate)
+            //         break
+            //     }
+            //     default: {
+            //         list[i] = null
+            //         break
+            //     }
+            // }
+
+
 
             last = animate
 
         } )
+
+        list.sort((a, b) => {
+            if (a.top == b.top) {
+                return a.bottom - b.bottom
+            } else {
+                return a.top - b.top
+            }
+        })
     }
 
 }
