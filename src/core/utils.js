@@ -5,6 +5,11 @@ export default {
 
     getStyle: window.getComputedStyle,
 
+    /**
+     * 
+     * @param {Object} parentEle 父级元素
+     * 获取父级元素的子节点元素
+     */
     getChildList(parentEle) {
         var list = [];
         var child = parentEle.childNodes;
@@ -16,8 +21,14 @@ export default {
         return list;
     },
 
+    /**
+     * 
+     * @param {Object} el 接受样式的Dom节点
+     * @param {Object} tf 需要修改的样式及参数
+     * 样式的增加  
+     */
     setStyle(el, tf) {
-        // css 追加,插入等
+        
         var sty = '';
         if (typeof tf === 'string') {
             sty = tf;
@@ -29,6 +40,11 @@ export default {
         el.style.cssText += ';' + sty;
     },
 
+    /**
+     * 
+     * @param {Object} el DOM节点
+     * 获取el节点的宽高, top, left
+     */
     getStyleRect(el) {
         if (el instanceof SVGElement) {
             var rect = el.getBoundingClientRect();
