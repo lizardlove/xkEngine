@@ -3,8 +3,6 @@ export default {
     height: window.innerHeight,
     width: window.innerWidth,
 
-    getStyle: window.getComputedStyle,
-
     /**
      * 
      * @param {Object} parentEle 父级元素

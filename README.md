@@ -8,7 +8,7 @@
     |-- webpack.config.js         开发用webpack脚本，热加载
     |-- src                       基础文件目录
         |-- core                  引擎核心文件
-        |   |-- animate.js        CSSS3动画类文件
+        |   |-- animate.js        CSS3动画类文件
         |   |-- app.js            引擎入口
         |   |-- control.js        引擎核心控制器，控制整个流程
         |   |-- full.js           单屏动画类文件
@@ -42,3 +42,18 @@ npm run dev
 
 
 ### [开发文档](./doc/index.md)
+
+
+
+## 进度
+
+`1.22` 项目启动 by `蜥蜴`
+
+`1.24` 初始解析模块完成 by `蜥蜴`
+
+
+
+## 要求
+
+1. 模块功能完整，注释完整
+2. 按格式填写接口文档
