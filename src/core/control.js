@@ -18,7 +18,7 @@ export default class Control {
         this.basePoint = 0                               //动画触发基准线
         this.basePointTop = 0                            //动画触发基准线换算为实际绝对高度
  
-        this.ele = document.querySelector(config.ele)    //DOM结构的顶层盒子 #dt-scrollor
+        this.ele = utils.document.querySelector(config.ele)    //DOM结构的顶层盒子 #dt-scrollor
         
         this.pageArray = []                              //漫画页面.page 盒子列表
 
@@ -31,9 +31,9 @@ export default class Control {
 
         this.resource = new Resource()                   //资源控制器，主要用于资源的控制和预加载
 
-        this.scroll = new Scroll()                       //滑动控制器，主要用于滑动的控制，滑动相关参数的计算
-
         this.utils = utils                               //浏览器相关属性及与动画无关的工具函数
+
+        this.scroll = new Scroll(utils)      //滑动控制器，主要用于滑动的控制，滑动相关参数的计算
 
         this.init(this.ele)
     }
@@ -470,11 +470,11 @@ export default class Control {
             animate.top = Math.round(start)
             animate.bottom = Math.round(end)
 
-            // switch (animate.type) {  //实例化各类动画
-            //     case 'music': {
-            //         list[i] = new Music(animate)
-            //         break
-            //     }
+            switch (animate.type) {  //实例化各类动画
+                case 'music': {
+                    list[i] = new Music(animate)
+                    break
+                }
             //     case 'animate': {
             //         list[i] = new Animate(animate)
             //         break
@@ -495,7 +495,7 @@ export default class Control {
             //         list[i] = null
             //         break
             //     }
-            // }
+            }
 
 
 
