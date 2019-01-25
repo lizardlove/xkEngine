@@ -81,8 +81,12 @@ export default class Control {
 
         self._computeAnimates(self.animates)     //计算动画的触发高度和结束高度，并实例化各类动画
 
-        //此处赋值应在页面加载完成后，置于此处，便于当前调试
+        
+        //以下部分应在页面加载完成后，置于此处，便于当前调试
         animateContent.style.height = animateContent.getAttribute('data-boxHeight') + 'px'
+        self.scroll.initEvent(false, function (top) {
+            console.log(top)
+        })
 
     }
 

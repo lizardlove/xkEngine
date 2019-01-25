@@ -5,5 +5,5 @@ let xkAnimate = new Control({
 })
 // console.log("pageArray:", xkAnimate.pageArray)
 // console.log("pageArray length:", xkAnimate.pageArray.length)
-console.log("animates:", xkAnimate.animates)
+// console.log("animates:", xkAnimate.animates)
 // console.log("resources:", xkAnimate.resource.box)

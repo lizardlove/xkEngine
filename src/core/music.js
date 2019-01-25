@@ -3,8 +3,6 @@ import {Howl, Howler} from 'howler'
 export default class Music {
     constructor(config) {
 
-        console.log(config)
-
         this.id = config.id
         this.ele = config.ele
         this.status = config.status

@@ -22,7 +22,7 @@ function _prefixStyle(style) {
     return _hasAttr + style.charAt(0).toUpperCase() + style.toLowerCase().substr(1);
 };
 
-
+//自执行函数运行一些兼容浏览器的方法
 (function () {
     let lastTime = 0,
         i = 0,
@@ -65,16 +65,16 @@ function _prefixStyle(style) {
 
 utils =  {
 
-    window: window,
-    document: document,
+    window: window,                                                          //保存浏览器顶层全局对象
+    document: document,                                                      //保存浏览器文档对象
 
-    height: window.innerHeight,
-    width: window.innerWidth,
+    height: window.innerHeight,                                              //浏览器可视区域高度
+    width: window.innerWidth,                                                //浏览器可视区域宽度
 
     requestAnimationFrame: requestAnimationFrame,
     cancelAnimationFrame: cancelAnimationFrame,
 
-    getTime: Date.now || function getTime() {return new Date().getTime()},
+    getTime: Date.now || function getTime() {return new Date().getTime()},  
 
     hasTransform: _prefixStyle('transform') !== false,
     hasPerspective: _prefixStyle('perspective') in _eleStyle,
@@ -82,9 +82,9 @@ utils =  {
     hasPointer: !!(window.PointerEvent || window.MSPointerEvent),
     hasTransition: _prefixStyle('transition') in _eleStyle,
 
-    isBadAndroid: isBadAndroid,
+    isBadAndroid: isBadAndroid,                                             //判断移动端平台
 
-    style: {
+    style: {                                                                //浏览器是否支持某些css属性
 
         transform: _prefixStyle('transform'),
         transitionTimingFunction: _prefixStyle('transitionTimingFunction'),
@@ -105,11 +105,16 @@ utils =  {
 
     },
 
-    scrollTop() {
+    scrollTop() {                                                          //获取当前滑动高度
         return Math.round(document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop)
     },
 
-    offset(el) {
+    /**
+     * 
+     * @param {Object} el 节点元素
+     * 获取节点的顶部偏移和左偏移
+     */
+    offset(el) { 
         let left = -el.offsetLeft,
             top = -el.offsetTop
 
@@ -124,6 +129,12 @@ utils =  {
         }
     },
 
+    /**
+     *判断一个节点是否具有某个类名
+     * @param {Object} ele DOM节点
+     * @param {String} c 类名
+     * @returns Boolean
+     */
     hasClass(ele, c) {
 
         let re = new RegExp("(^|\\s)" + c + "(\\s|$)")
@@ -131,6 +142,11 @@ utils =  {
         return re.test(ele.className)
     },
 
+    /**
+     * 给元素添加类名
+     * @param {Object} ele DOM节点
+     * @param {String} c 类名
+     */
     addClass(ele, c) {
         
         let self = this
@@ -145,6 +161,11 @@ utils =  {
         ele.className = newclass.join(' ')
     },
 
+    /**
+     * 移出元素类名
+     * @param {Object} ele DOM节点
+     * @param {String} c 类名 
+     */
     removeClass(ele, c) {
 
         let self = this
@@ -157,20 +178,42 @@ utils =  {
         ele.className = ele.className.replace(reg, ' ')
     },
 
+    /**
+     * 
+     * @param {Object} el 目标DOM节点
+     * @param {String} type 绑定事件名称
+     * @param {Function/Object} fn 回调函数，也可用对象，可以动态修改回调函数 
+     * @param {Boolean} capture 是否捕获
+     */
     addEvent(el, type, fn, capture) {
         el.addEventListener(type, fn, !!capture)
     },
 
+    /**
+     * 
+     * @param {Object} el 目标DOM节点
+     * @param {String} type 绑定事件名称
+     * @param {Function/Object} fn 回调函数，也可用对象，可以动态修改回调函数 
+     * @param {Boolean} capture 是否捕获
+     */
     removeEvent(el, type, fn, capture) {
         el.removeEventListener(type, fn, !!capture)
     },
 
+    /**
+     * 
+     * @param {Object} pointerEvent 指针事件对象 
+     */
     prefixPointerEvent(pointerEvent) {
         return window.MSPointerEvent ?
         'MSPointer' + pointerEvent.charAt(7).toUpperCase() + pointerEvent.substr(8):
         pointerEvent;
     },
 
+    /**
+     * click兼容事件
+     * @param {Object} e 事件对象 
+     */
     click(e) {
         let target = e.target, ev
 
@@ -255,10 +298,18 @@ utils =  {
         }
     },
 
+    /**
+     * 
+     * @param {String} str 错误处理内容 
+     */
     error(str) {
         throw Error(str)
     },
 
+    /**
+     * 消除字符串中的空格
+     * @param {String} str 待处理字符串 
+     */
     trim(str) {
         let whitespace = ' \n\r\t\x0b\xa0\u2000\u2001\u2002\u2003\n\
 			\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u2030';

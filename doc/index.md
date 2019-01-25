@@ -98,9 +98,11 @@
 | ---------------- | -------- | ------------------------------------------------------------ |
 | top              | Number   | 页面滑动高度                                                 |
 | lastTop          | Number   | 上一刷新时的滑动高度                                         |
-| disable          | Boolean  | 页面是否可滑动                                               |
+| callback         | Function | 外部对象的回调函数                                           |
 | direct           | Number   | 0：上， 1：下，2：左，3：右                                  |
 | event            | Object   | 滑动事件对象                                                 |
+| wrapper          | Object   | 顶层对象，获取滑动参数                                       |
+| options          | Object   | 滑动控制，多端兼容                                           |
 | start, move, end | Function | 滑动的起始，移动，结束事件，兼容click，touch多端移动控制事件 |
 
 ### Resource
@@ -117,13 +119,30 @@
 
 > 工具库，浏览器相关属性及其他工程函数的集合
 
-| 属性              | 类型     | 说明                                |
-| ----------------- | -------- | ----------------------------------- |
-| width             | Number   | 浏览器可视区域宽度                  |
-| height            | Number   | 浏览器可视区域高度                  |
-| getChildList(ele) | Function | 获取父级元素ele的所有子元素节点     |
-| setStyle(ele, tf) | Function | 将样式tf添加到ele                   |
-| getStyleRect(ele) | Function | 获取节点ele的宽高，绝对高度，左偏移 |
+| 属性                               | 类型     | 说明                                |
+| ---------------------------------- | -------- | ----------------------------------- |
+| window                             | Object   | 全局对象                            |
+| document                           | Object   | 文档对象                            |
+| width                              | Number   | 浏览器可视区域宽度                  |
+| height                             | Number   | 浏览器可视区域高度                  |
+| isBadAndroid                       | Boolean  | 判断移动端平台                      |
+| style                              | Object   | 浏览器是否支持相关css3属性          |
+| scrollTop()                        | Function | 获取当前滑动高度                    |
+| requestAnimationFrame              | Fucntion | 多平台兼容                          |
+| cancelAnimationFrame               | Function | 多平台兼容                          |
+| getTime                            | Function | 获取当前时间                        |
+| getChildList(ele)                  | Function | 获取父级元素ele的所有子元素节点     |
+| setStyle(ele, tf)                  | Function | 将样式tf添加到ele                   |
+| getStyleRect(ele)                  | Function | 获取节点ele的宽高，绝对高度，左偏移 |
+| offset(el)                         | Function | 获取节点的顶部偏移和左偏移          |
+| hasClass(ele, c)                   | Function | 判断节点是否具有类名c               |
+| addClass(ele, c)                   | Function | 给节点添加类名                      |
+| removeClass(ele, c)                | Function | 移出类名                            |
+| addEvent(el, type, fn, capture)    | Function | 添加事件                            |
+| removeEvent(el, type, fn, capture) | Function | 绑定事件                            |
+| prefixPointerEvent(pointerEvent)   | Function | 指针事件对象的兼容                  |
+| click                              | Function | click兼容事件                       |
+| trim                               | Function | 删除固定字符                        |
 
 
 
