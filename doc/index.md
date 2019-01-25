@@ -94,16 +94,20 @@
 
 > 滑动控制器，页面滑动的控制，及滑动相关参数计算，事件的兼容
 
-| 属性             | 类型     | 说明                                                         |
-| ---------------- | -------- | ------------------------------------------------------------ |
-| top              | Number   | 页面滑动高度                                                 |
-| lastTop          | Number   | 上一刷新时的滑动高度                                         |
-| callback         | Function | 外部对象的回调函数                                           |
-| direct           | Number   | 0：上， 1：下，2：左，3：右                                  |
-| event            | Object   | 滑动事件对象                                                 |
-| wrapper          | Object   | 顶层对象，获取滑动参数                                       |
-| options          | Object   | 滑动控制，多端兼容                                           |
-| start, move, end | Function | 滑动的起始，移动，结束事件，兼容click，touch多端移动控制事件 |
+| 属性                        | 类型     | 说明                                                         |
+| --------------------------- | -------- | ------------------------------------------------------------ |
+| top                         | Number   | 页面滑动高度                                                 |
+| lastTop                     | Number   | 上一刷新时的滑动高度                                         |
+| callback                    | Function | 外部对象的回调函数                                           |
+| direct                      | Number   | 0：上， 1：下，2：左，3：右                                  |
+| event                       | Object   | 滑动事件对象                                                 |
+| wrapper                     | Object   | 顶层对象，获取滑动参数                                       |
+| options                     | Object   | 滑动控制，多端兼容                                           |
+| _start(e)                   | Function | 起始事件，兼容click，touch多端移动控制事件                   |
+| _move(e)                    | Function | 移动事件，多端兼容                                           |
+| _end(e)                     | Function | 移动结束，多端兼容                                           |
+| initEvent(remove, callback) | Function | 绑定事件，回调，多端兼容                                     |
+| handleEvent(e)              | Function | handleEvent为浏览器触发绑定对象的回调函数时的默认捕获事件对象的函数 |
 
 ### Resource
 
