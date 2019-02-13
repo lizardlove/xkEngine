@@ -24,6 +24,7 @@ export default class Control {
 
         this.status = 0                                  //页面状态，3种取值0、1、2，0表示处于加载动画，1表示浏览模式，2表示触及底部，即结束
 
+        this.oldPageActive = []
         this.pageActive = [0, 1, 2]                             //处于屏幕可视区域的page列表
         
         this.animateActive = []                          //处于以当前屏幕为中心，往上两个可视屏幕，往下两个可视屏幕，此范围内的活动动画索引列表
@@ -85,13 +86,92 @@ export default class Control {
         //以下部分应在页面加载完成后，置于此处，便于当前调试
         animateContent.style.height = animateContent.getAttribute('data-boxHeight') + 'px'
         self.resource.load(self.pageActive)
+        self.status = 1
+        self.play()
+
+
         self.scroll.initEvent(false, function (top) {
-            console.log(top)
+
+            let displayStart, displayEnd, screenHeight
+
+            screenHeight = self.utils.height
+
+            self.basePointTop = top + self.basePoint * screenHeight
+
+            displayStart = top - screenHeight * 3
+            displayStart = displayStart < 0 ? 0 : displayStart
+
+            displayEnd = top + screenHeight * 3
+
+            self.oldPageActive = self.pageActive
+            self.pageActive = self._modify(self.pageArray, self.pageActive, displayStart, displayEnd)
+            self.animateActive = self._modify(self.animates, self.animateActive, displayStart, displayEnd)
+            
+            self.resource.load(self.pageActive)
+
+            self.play()
 
         })
 
     }
 
+    play() {
+        
+        let self = this
+
+        self.pageActive.forEach(index => {
+
+            let page = self.pageArray[index]
+
+            if (!page.style.display) {
+                flash(page)
+            }
+
+            page.style.display = "block"
+
+        })
+
+        function flash(page) {
+            let child, src
+            child = page.children || self.utils.getChildList(page)
+            src = page.getAttribute('data-src')
+            if (src) {
+                page.setAttribute('src', src)
+            }
+
+            for (let i = 0; i < child.length; i++) {
+                src = child[i].getAttribute('data-src')
+                if (src) {
+                    child[i].setAttribute('src', src)
+                }
+            }
+        }
+    }
+    _modify(objects, active, start, end) {
+        let self = this
+        let ac = []
+        let rect, index, bottom
+        active.forEach(index => {
+            rect = self.utils.isDom(objects[index]) ? self.utils.getStyleRect(objects[index]) : objects[index]
+            bottom = rect.bottom ? rect.bottom : rect.top + rect.height
+            if (bottom > start) {
+                ac.push(index)
+            }
+        })
+
+        index = ac[ac.length -1] + 1
+        index = index ? index : 0
+        for (let i = index; i < objects.length; i++) {
+            rect = self.utils.isDom(objects[i]) ? self.utils.getStyleRect(objects[i]) : objects[i]
+            if (rect.top < end) {
+                ac.push(i)
+            } else {
+                break
+            }
+        }
+
+        return ac
+    }
     /**
      * 
      * @param {Object} box  漫画内容盒子
@@ -217,6 +297,7 @@ export default class Control {
 
             srcCore = {
                 type: "",
+                loaded: false,
                 src: ""
             }
             
@@ -268,11 +349,12 @@ export default class Control {
             if (src) {
                 pageResource.list.push({
                     type: "image",
+                    loaded: false,
                     src: src
                 })
 
-                dom.setAttribute('src', src)     //此语句在后续加入滑动控制后应删除，此处是便于当前调试
-                dom.removeAttribute('data-src')  //同上
+                // dom.setAttribute('src', src)     //此语句在后续加入滑动控制后应删除，此处是便于当前调试
+                // dom.removeAttribute('data-src')  //同上
             }
         }
 

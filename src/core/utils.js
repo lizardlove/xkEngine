@@ -109,6 +109,12 @@ utils =  {
         return Math.round(document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop)
     },
 
+    isDom(obj) {
+        return ( typeof HTMLElement === 'object' ) ?
+               obj instanceof HTMLElement:
+               obj && typeof obj === 'object' && obj.nodeType === 1 && typeof obj.nodeName === 'string'
+    },
+
     /**
      * 
      * @param {Object} el 节点元素
