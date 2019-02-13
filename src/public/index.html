@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
     <meta charset="UTF-8">
-    <title>安德诺 第五话</title>
+    <title>蝴蝶鱼 第五话</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge; chrome=1">
     <meta name="renderer" content="webkit">
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
           <link href="css/xk_loads.css" rel="stylesheet">
           <link href="css/xk_dtStyle.css" rel="stylesheet">
           <link href="css/xk_Effect.css" rel="stylesheet">
@@ -23,21 +20,143 @@
           <script src="js/xk_animal.js"></script>
           <script src="js/xk_menu.js"></script> -->
     <style>
-        @-webkit-keyframes opac {
+        @-webkit-keyframes f07 {
             0% {
-                opacity: 1;
+                -webkit-transform: scale(1.5);
+                opacity: 0.5;
             }
-            40% {
-                opacity: 0;
+            30% {
+                -webkit-transform: scale(1.35);
+                opacity: 0.75;
             }
             60% {
-                opacity: 0;
+                -webkit-transform: scale(1.15);
+                opacity: 0.45;
             }
             100% {
+                -webkit-transform: scale(1);
                 opacity: 1;
             }
         }
-
+        @keyframes f07 {
+            0% {
+                transform: scale(1.5);
+                opacity: 0.5;
+            }
+            30% {
+                transform: scale(1.35);
+                opacity: 0.75;
+            }
+            60% {
+                transform: scale(1.15);
+                opacity: 0.45;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        @-webkit-keyframes f07a {
+            0% {
+                -webkit-transform: scale(1.5);
+                opacity: 0.5;
+            }
+            30% {
+                -webkit-transform: scale(1.35);
+                opacity: 0.75;
+            }
+            60% {
+                -webkit-transform: scale(1.15);
+                opacity: 0.45;
+            }
+            100% {
+                -webkit-transform: scale(1);
+                opacity: 0;
+            }
+        }
+        @keyframes f07a {
+            0% {
+                transform: scale(1.5);
+                opacity: 0.5;
+            }
+            30% {
+                transform: scale(1.35);
+                opacity: 0.75;
+            }
+            60% {
+                transform: scale(1.15);
+                opacity: 0.45;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+        
+        @-webkit-keyframes ShowHi-15 {
+            0% {
+                opacity: 0.4
+            }
+            30% {
+                opacity: 0.6
+            }
+            50% {
+                opacity: 0.8
+            }
+            100% {
+                opacity: 0.2
+            }
+        }
+        
+        @keyframes ShowHi-15 {
+            0% {
+                opacity: 0.4
+            }
+            30% {
+                opacity: 0.6
+            }
+            50% {
+                opacity: 0.8
+            }
+            100% {
+                opacity: 0.2
+            }
+        }
+        @-webkit-keyframes ShowHi-2 {
+            from{
+                opacity: 1;
+            }
+            to{
+                opacity: 0;
+            }
+        }
+        
+        @keyframes ShowHi-2 {
+            from{
+                opacity: 1;
+            }
+            to{
+                opacity: 0;
+            }
+        }
+        
+        @-webkit-keyframes ShowHi-21 {
+            from{
+                opacity: 0;
+            }
+            to{
+                opacity: 1;
+            }
+        }
+        
+        @keyframes ShowHi-21 {
+            from{
+                opacity: 0;
+            }
+            to{
+                opacity: 1;
+            }
+        }
         @keyframes opac {
             0% {
                 opacity: 1;
@@ -52,25 +171,192 @@
                 opacity: 1;
             }
         }
-
-        @-webkit-keyframes rot {
+        @keyframes rain1 {
             0% {
-                -webkit-transform: rotate(0deg);
+                opacity: 1;
+            }
+            40% {
+                opacity: 0;
+            }
+            80% {
+                opacity: 0;
             }
             100% {
-                -webkit-transform: rotate(360deg);
+                opacity: 0;
             }
         }
-
-        @keyframes rot {
+        @keyframes rain2 {
             0% {
-                transform: rotate(0deg);
+                opacity: 0;
+            }
+            30% {
+                opacity: 1;
+            }
+            70% {
+                opacity: 0;
             }
             100% {
-                transform: rotate(360deg);
+                opacity: 0;
+            }
+
+        }
+        @keyframes rain3 {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 0;
+            }
+            60% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
             }
         }
+        @keyframes umbrella1 {
+            0% {
+                opacity: 1;
+            }
+            20% {
+                opacity: 0;
+            }
+            40% {
+                opacity: 0;
+            }
+            60% {
+                opacity: 0;
+            }
+            80% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        @keyframes umbrella2 {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            40% {
+                opacity: 0;
+            }
+            60% {
+                opacity: 0;
+            }
+            80% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        @keyframes umbrella3 {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 0;
+            }
+            40% {
+                opacity: 1;
+            }
+            60% {
+                opacity: 0;
+            }
+            80% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        @keyframes umbrella4 {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 0;
+            }
+            40% {
+                opacity: 0;
+            }
+            60% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        @keyframes umbrella5 {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 0;
+            }
+            40% {
+                opacity: 0;
+            }
+            60% {
+                opacity: 0;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes snow1 {
+            0% {
+                opacity: 1;
+            }
+            33% {
+                opacity: 0;
+            }
+            66% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        @keyframes snow2 {
+            0% {
+                opacity: 0;
+            }
+            33% {
+                opacity: 1;
+            }
+            66% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0;
+            }
 
+        }
+        @keyframes snow3 {
+            0% {
+                opacity: 0;
+            }
+            33% {
+                opacity: 0;
+            }
+            66% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -88,296 +374,294 @@
                 loading...
             </div>
         </div> -->
-
         <div></div>
-        <div id="dt-animalContent" class="xk-animal-content" data-width="768" data-height="68679">
 
-            <div class="page" id="xk0" data-top="0" data-width="768" data-height="2128">
-                <img class="page-bg" data-width="768" data-height="2128" data-src="images/logoBack.jpg">
+        <div id="dt-animalContent" class="xk-animal-content" data-width="768" data-height="3051">
+            <div class="page" id="xk0" data-top="0" data-width="768" data-height="2131">
+                <img alt="" class="page-bg" data-src="images/warning.jpg" data-width="768" data-height="2131">
             </div>
-
-            <div class="page" id="xk1" data-top="2128" data-width="768" data-height="1805">
-                <img class="page-bg"
-                     data-animal="{'item':{'type':1,'speed':60,'delay':3,'music':{'url':['songs/01-adn5-center.mp3'],'outfade':2000}}}"
-                     data-width="768" data-height="1805" data-src="images/01-adn5-bg.jpg">
+            <div class="page" id="xk1" data-top="2131" data-width="768" data-height="920">
+                <img alt="" class="page-bg" data-src="images/logoBack-01-bg.jpg" data-width="768" data-height="920">
+                <img alt="" class="page-style-top" style="opacity: 0; transform-origin: 50% 50%;" data-start="0.12" data-animal="{'item':{'type':1,'speed':12,'delay':4,'animation':'ShowHi-21 1.25s linear 1 forwards'}}" data-src="images/logoBack-01-dx-3.png" data-width="768" data-height="920">
+                <img alt="" class="page-style-top" style="opacity: 0; transform-origin: 50% 50%;" data-start="0.05" data-animal="{'item':{'type':1,'speed':12,'delay':4,'animation':'f07 1s linear 1 forwards'}}" data-src="images/logoBack-01-dx-1.png" data-width="768" data-height="920">
+                <img alt="" class="page-style-top" data-start="0.05" data-animal="{'item':{'type':1,'speed':45,'delay':4,'music': {'url': ['songs/logo-back.mp3'],'outfade':2000 }}}" data-src="images/logoBack-01-dx-2.png" data-width="768" data-height="920">
+                <img alt="" class="page-style-top" style="opacity: 0; transform-origin: 50% 50%;" data-start="0.05" data-animal="{'item':{'type':0,'speed':12,'delay':4,'animation':'f07a 0.75s linear 1 forwards'}}" data-src="images/logoBack-01-dx-4.png" data-width="768" data-height="920">
             </div>
-
-            <div class="page" id="xk2" data-top="3933" data-width="768" data-height="1405">
-                <img class="page-bg" data-width="768" data-height="1405" data-src="images/02-adn5-bg.jpg">
+            <div class="page" id="xk2" data-top="0" data-width="768" data-height="2280">
+                <img alt="" class="page-bg" data-src="images/start.jpg" data-width="768" data-height="2280">
             </div>
-
-            <div class="page" id="xk3" data-top="5338" data-width="768" data-height="1535">
-                <img class="page-bg" data-width="768" data-height="1535" data-src="images/03-adn5-bg.jpg">
-                <img class="page-style-bottom" style="left: 260px" data-animal="{'item':{'type':2,'speed': 15,'delay':3,'transform':'translate(-260px,0) translateZ(0)'},
-                                'item2':{'type':2,'speed':40,'delay':0,'music':{'url':['songs/03-adn5-screenOn.mp3'],'outfade':2000}}}"
-                     data-width="768" data-height="486" data-src="images/03-adn5-dx1.png">
-                <img class="page-style-bottom" style="left: -260px"
-                     data-animal="{'item':{'type':1,'speed':15,'delay':3,'transform':'translate(260px,0) translateZ(0)'}}"
-                     data-width="768" data-height="487" data-src="images/03-adn5-dx2.png">
-                <img class="page-style-bottom" style="opacity: 0;" data-start="0.2"
-                     data-animal="{'item':{'type':1,'speed':15,'delay':2,'opacity':'1'}}" data-width="768"
-                     data-height="539" data-src="images/03-adn5-dx3.png">
+            <div class="page" data-bgm="{'item':{'loop':false,'newTeam':[0,1],'oldTeam':[0,1],'start':true,'outfade':2000,'startTop':0.1,'url':['songs/01-gqzhp5-hong.mp3'],'id':'xk3618610'}}" id="xk3" data-top="2280" data-width="768" data-height="1067">
+                <img alt="" class="page-bg" data-src="images/01-gqzhd05-bg.jpg" data-width="768" data-height="1067">
             </div>
-
-            <div class="page" id="xk4" data-top="6873" data-width="768" data-height="1675">
-                <img class="page-bg" data-width="768" data-height="1675" data-src="images/04-adn5-bg.jpg">
+            <div class="page" id="xk4" data-top="3347" data-width="768" data-height="2317">
+                <img alt="" class="page-bg" data-animal="{'item':{'type':2,'speed':40,'delay':5,'music':{'url':['songs/02-gqzhp5-flash.mp3'],'outfade':2000, 'loop': false}}}" data-src="images/02-gqzhd05-bg.jpg" data-width="768" data-height="2317">
+                <img alt="" class="page-style-top" style="opacity: 0;" data-animal="{'item':{'type':1,'speed': 20,'delay':3,'opacity':'1'}}" data-src="images/02-gqzhd05-dx-1.png" data-width="768" data-height="2317">
+                <img alt="" class="page-style-top" data-src="images/02-gqzhd05-dx-2.png" data-width="768" data-height="2317">
+                <img alt="" class="page-style-top" style="opacity: 0;" data-animal="{'item':{'type':1,'speed': 10,'delay': 5,'animation':'opac 1.5s linear infinite'}}" data-src="images/02-gqzhd05-zz-1.png" data-width="768" data-height="2317">
+                <img alt="" class="page-style-top" data-src="images/02-gqzhd05-zz-2.png" data-width="768" data-height="2317">
             </div>
-
-            <div class="page" id="xk5" data-top="8548" data-width="768" data-height="1523">
-                <img class="page-bg" data-width="768" data-height="1523" data-src="images/05-adn5-bg.jpg">
-                <div class="page-child-box page-style-bottom" data-height="574" data-width="768"
-                     data-animal="{'item':{'type':1,'speed':30,'delay':3,'animation':'trans1XY 0.6s linear infinite'}}">
-                    <img class="page-style-bottom" style="left: 408px;bottom: 74px;"
-                         data-animal="{'item':{'type':1,'speed':30,'delay':3,'transform':'translate(-408px,74px) translateZ(0)'},
-                                    'item2':{'type':2,'speed':90,'delay':0,'music':{'url':['songs/05-adn5-hand.mp3'],'outfade':2000}}}"
-                         data-width="768" data-height="574" data-src="images/05-adn5-dx1.png">
-                </div>
-                <img class="page-style-top" data-width="768" data-height="1523" data-src="images/05-adn5-zz.png">
+            <div class="page" id="xk5" data-top="5664" data-width="768" data-height="2816">
+                <img alt="" class="page-bg" data-animal="{'item':{'type':2,'speed':40,'delay':2,'music':{'url':['songs/03-gqzhp5-change.mp3'],'outfade':2000, 'loop': false}}}" data-src="images/03-gqzhd05-bg.jpg" data-width="768" data-height="2816">
+                <img alt="" class="page-style-top" data-animal="{'item':{'type':1, 'speed': 30, 'delay': 5, 'animation':'trans1XY 0.5s linear infinite'}}" data-src="images/03-gqzhd05-dx-1.png" data-width="768" data-height="2816">
+                <img alt="" class="page-style-top" data-animal="{'item':{'type':1,'speed':40,'delay': 140,'music':{'url':['songs/03-gqzhp5-close.mp3'],'outfade':2000, 'loop': false}}}" data-src="images/03-gqzhd05-zz.png" data-width="768" data-height="2816">
             </div>
-
-            <div class="page" id="xk6"
-                 data-bgm="{'item':{'loop':false,'newTeam':[0,1],'oldTeam':[0,1],'start':true,'outfade':2000,'startTop':0.3,'url':['songs/06-adn5-suffering.mp3'],'id':'xk65797'}}"
-                 data-top="10071" data-width="768" data-height="1837">
-                <img class="page-bg" data-width="768" data-height="1837" data-src="images/06-adn5-bg.jpg">
-                <div class="page-child-box page-style-bottom" data-width="768" data-height="949"
-                     style="-webkit-transform:scale(1.1,1.1);-moz-transform:scale(1.1,1.1);-o-transform:scale(1.1,1.1);transform: scale(1.1,1.1)">
-                    <img class="page-style-bottom" data-width="768" data-height="949" data-start="0.2"
-                         data-animal="{'item':{'type':1,'speed':20,'delay':3,'animation':'trans1XY 0.3s linear 5'}}"
-                         data-src="images/06-adn5-dx1.png">
-                </div>
-                <img class="page-style-top" data-width="768" data-height="1837" data-src="images/06-adn5-zz.png">
+            <div class="page" id="xk6" data-top="8480" data-width="768" data-height="941">
+                <img alt="" class="page-bg" data-animal="{'item':{'type':1,'speed':40,'delay':4,'music':{'url':['songs/04-gqzhp5-can.mp3'],'outfade':2000, 'loop': false}}}" data-src="images/04-gqzhd05-bg.jpg" data-width="768" data-height="941">
             </div>
-
-            <div class="page" id="xk7"
-                 data-bgm="{'item':{'loop':false,'newTeam':[0,1],'oldTeam':[0,1],'start':false,'outfade':2000,'url':['songs/06-adn5-suffering.mp3'],'id':'xk65797'}}"
-                 data-top="11908" data-width="768" data-height="1344">
-                <img class="page-bg" data-width="768" data-height="1344" data-src="images/07-adn5-bg.jpg">
-                <img class="page-style-bottom"
-                     style="left: 80px;bottom: -100px;-webkit-transform:scale(2,2); -moz-transform:scale(2,2); -o-transform:scale(2,2);transform: scale(2,2);"
-                     data-animal="{'item':{'type':1,'speed':20,'delay':4,'transform':'translate3d(-80px,-100px,0) scale(1,1)'}}"
-                     data-width="768" data-height="644" data-src="images/07-adn5-dx1.jpg">
-                <img class="page-style-top" data-width="768" data-height="1344" data-src="images/07-adn5-zz.png">
+            <div class="page" id="xk7" data-top="9421" data-width="768" data-height="1680">
+                <img alt="" class="page-bg" data-src="images/05-gqzhd05-bg.jpg" data-width="768" data-height="1680">
             </div>
-
-            <div class="page" id="xk8" data-top="13252" data-width="768" data-height="1986">
-                <img class="page-bg" data-width="768" data-height="1986" data-src="images/08-adn5-bg.jpg">
-                <img class="page-style-top" data-width="768" data-height="253" style="left: 5px" data-start="0.1"
-                     data-animal="{'item':{'type':1,'speed':20,'delay':3,'animation':'trans1XY 0.4s linear 5'},
-                                'item2':{'type':2,'speed':50,'delay':0,'music':{'url':['songs/08-adn5-hand.mp3'],'outfade':2000}}}"
-                     data-src="images/08-adn5-dx1.png">
+            <div class="page" data-bgm="{'item':{'loop':true,'newTeam':[0,7],'oldTeam':[0,7],'start':true,'outfade':2000,'startTop':0.5,'url':['songs/06-gqzhp5-rain.mp3'],'id':'xk861908'}}" id="xk8" data-top="11101" data-width="768" data-height="1860">
+                <img alt="" class="page-bg" data-animal="{'item':{'type':1,'speed':40,'delay': 0,'music':{'url':['songs/06-gqzhp5-littleRain.mp3'],'outfade':2000, 'loop': false}}}" data-src="images/06-gqzhd05-bg.jpg" data-width="768" data-height="1860">
+                <img alt="" class="page-style-top" data-animal="{'item': {'type': 0, 'speed': 50, 'delay': 0, 'animation': 'rain1 0.5s ease infinite'}}" data-src="images/06-gqzhd05-dx-1.png" data-width="768" data-height="1860">
+                <img alt="" class="page-style-top" data-animal="{'item': {'type': 0, 'speed': 50, 'delay': 0, 'animation': 'rain2 0.5s ease infinite'}}" data-src="images/06-gqzhd05-dx-2.png" data-width="768" data-height="1860">
+                <img alt="" class="page-style-top" data-animal="{'item': {'type': 0, 'speed': 50, 'delay': 0, 'animation': 'rain3 0.5s ease infinite'}}" data-src="images/06-gqzhd05-dx-3.png" data-width="768" data-height="1860">
+                <img alt="" class="page-style-top" data-src="images/06-gqzhd05-zz.png" data-width="768" data-height="1860">
             </div>
-
-            <div class="page" id="xk9" data-top="15238" data-width="768" data-height="1381">
-                <img class="page-bg" data-width="768" data-height="1381" data-src="images/09-adn5-bg.jpg">
-                <img class="page-style-bottom" data-start="0.1"
-                     data-animal="{'item':{'type':1,'speed':20,'delay':3,'animation':'trans1XY 0.4s linear 5'}}"
-                     data-width="768" data-height="566" data-src="images/09-adn5-dx1.png">
-                <img class="page-style-top" data-width="768" data-height="1381" data-src="images/09-adn5-zz.png">
+            <div class="page" id="xk9" data-top="12961" data-width="768" data-height="1719">
+                <img alt="" class="page-bg" data-src="images/07-gqzhd05-bg.jpg" data-width="768" data-height="1719">
             </div>
-
-            <div class="page" id="xk10" data-top="16619" data-width="768" data-height="2219">
-                <img class="page-bg" data-width="768" data-height="2219" data-src="images/10-adn5-bg.jpg">
+            <div class="page" id="xk10" data-top="14680" data-width="768" data-height="897">
+                <img alt="" class="page-bg" data-src="images/08-gqzhd05-bg.jpg" data-width="768" data-height="897">
             </div>
-
-            <div class="page" id="xk11" data-top="18838" data-width="768" data-height="1876">
-                <img class="page-bg" data-width="768" data-height="1876" data-src="images/11-adn5-bg.jpg">
+            <div class="page" id="xk11" data-top="15577" data-width="768" data-height="1179">
+                <img alt="" class="page-bg" data-animal="{'item':{'type':1,'speed':20,'delay': 3,'music':{'url':['songs/09-gqzhp5-openUmberall.mp3'],'outfade':2000, 'loop': false}}}" data-src="images/09-gqzhd05-bg.jpg" data-width="768" data-height="1179">
+                <img alt="" class="page-style-top" style="opacity: 0; z-index: 3;" data-animal="{'item': {'type': 0, 'speed': 50, 'delay': 0, 'animation': 'umbrella1 0.5s linear 1'}}" data-src="images/09-gqzhd05-dx-0.png" data-width="768" data-height="1179">
+                <img alt="" class="page-style-top" style="opacity: 0;" data-animal="{'item': {'type': 0, 'speed': 50, 'delay': 2, 'animation': 'umbrella2 0.5s linear 1'}}" data-src="images/09-gqzhd05-dx-1.png" data-width="768" data-height="1179">
+                <img alt="" class="page-style-top" style="opacity: 0;" data-animal="{'item': {'type': 0, 'speed': 50, 'delay': 2, 'animation': 'umbrella3 0.5s linear 1'}}" data-src="images/09-gqzhd05-dx-2.png" data-width="768" data-height="1179">
+                <img alt="" class="page-style-top" style="opacity: 0;" data-animal="{'item': {'type': 0, 'speed': 50, 'delay': 2, 'animation': 'umbrella4 0.5s linear 1'}}" data-src="images/09-gqzhd05-dx-3.png" data-width="768" data-height="1179">
+                <img alt="" class="page-style-top" style="z-index: 2;" data-animal="{'item': {'type': 0, 'speed': 50, 'delay': 2, 'animation': 'umbrella5 0.5s linear 1'}}" data-src="images/09-gqzhd05-dx-4.png" data-width="768" data-height="1179">
+                <img alt="" class="page-style-top" data-src="images/09-gqzhd05-zz.png" data-width="768" data-height="1179">
             </div>
-
-            <div class="page" id="xk12" data-top="20714" data-width="768" data-height="2024">
-                <img class="page-bg" data-width="768" data-height="2024" data-src="images/12-adn5-bg.jpg">
+            <div class="page" data-bgm="{'item':{'loop':false,'newTeam':[0,2],'oldTeam':[0,2],'outfade':2000,'start':true,'startTop':0.2,'url':['songs/10-gqzhp5-cry.mp3'],'id':'xk1262106'}}" id="xk12" data-top="16756" data-width="768" data-height="1292">
+                <img alt="" class="page-bg" data-src="images/10-gqzhd05-bg.jpg" data-width="768" data-height="1292">
             </div>
-
-            <div class="page" id="xk13" data-top="22738" data-width="768" data-height="1147">
-                <img class="page-bg" data-width="768" data-height="1147" data-src="images/13-adn5-bg.jpg">
-                <img class="page-style-top" style="top: 253px;"
-                     data-animal="{'item':{'type':1,'speed':20,'delay':1,'transform':'translate3d(0,-253px,0)'}}"
-                     data-width="768" data-height="491" data-src="images/13-adn5-dx1.png">
-                <img class="page-style-top" data-width="768" data-height="1147" data-src="images/13-adn5-zz.png">
+            <div class="page" id="xk13" data-top="18048" data-width="768" data-height="2095">
+                <img alt="" class="page-bg" data-src="images/11-gqzhd05-bg.jpg" data-width="768" data-height="2095">
+                <img alt="" class="page-style-top" style="opacity: 0;" data-animal="{'item': {'type': 0, 'speed': 25, 'delay': 1, 'opacity': '1'}}" data-src="images/11-gqzhd05-dx-1.png" data-width="768" data-height="2095">
+                <img alt="" class="page-style-top" style="opacity: 0;" data-animal="{'item': {'type': 3, 'speed': 30, 'delay': 5, 'opacity': '1'}}" data-src="images/11-gqzhd05-dx-2.png" data-width="768" data-height="2095">
+                <img alt="" class="page-style-top" data-src="images/11-gqzhd05-zz.png" data-width="768" data-height="2095">
             </div>
-
-            <div class="page" id="xk14" data-top="23885" data-width="768" data-height="1293">
-                <img class="page-bg" data-width="768" data-height="1293" data-src="images/14-adn5-bg.jpg">
+            <div class="page" id="xk14" data-top="20143" data-width="768" data-height="1428">
+                <img alt="" class="page-bg" data-src="images/12-gqzhd05-bg.jpg" data-width="768" data-height="1428">
             </div>
-
-            <div class="page" id="xk15" data-top="25178" data-width="768" data-height="1472">
-                <img class="page-bg" data-width="768" data-height="1472" data-src="images/15-adn5-bg.jpg">
+            <div class="page" id="xk15" data-top="21571" data-width="768" data-height="1385">
+                <img alt="" class="page-bg" data-src="images/13-gqzhd05-bg.jpg" data-width="768" data-height="1385">
+                <img alt="" class="page-style-top" style="opacity: 0;" data-animal="{'item': {'type': 0, 'speed': 30, 'delay': 4, 'opacity': '1'}}" data-src="images/13-gqzhd05-dx-1.png" data-width="768" data-height="1385">
+                <img alt="" class="page-style-top" data-src="images/13-gqzhd05-zz.png" data-width="768" data-height="1385">
             </div>
-
-            <div class="page" id="xk16" data-top="26650" data-width="768" data-height="1789">
-                <img class="page-bg" data-width="768" data-height="1789" data-src="images/16-adn5-bg.jpg">
-                <img class="page-style-top" style="opacity: 0;"
-                     data-animal="{'item':{'type':1,'speed':10,'delay':3,'opacity':'1'}}" data-width="768"
-                     data-height="379" data-src="images/16-adn5-dx1.png">
-                <img class="page-style-top" style="opacity: 0;" data-start="0.1"
-                     data-animal="{'item':{'type':1,'speed':10,'delay':3,'opacity':'1'}}" data-width="768"
-                     data-height="418" data-src="images/16-adn5-dx2.png">
+            <div class="page" id="xk16" data-top="22956" data-width="768" data-height="1235">
+                <img alt="" class="page-bg" data-src="images/14-gqzhd05-bg.jpg" data-width="768" data-height="1235">
             </div>
-
-            <div class="page" id="xk17" data-top="28439" data-width="768" data-height="1208">
-                <img class="page-bg" data-width="768" data-height="1208" data-src="images/17-adn5-bg.jpg">
-                <img class="page-style-bottom" style="opacity: 0;"
-                     data-animal="{'item':{'type':1,'speed':15,'delay':3,'opacity':'1'}}" data-width="768"
-                     data-height="719" data-src="images/17-adn5-dx1.png">
-                <img class="page-style-top" style="opacity: 0;"
-                     data-animal="{'item':{'type':1,'speed':15,'delay':3,'opacity':'1'}}" data-width="768"
-                     data-height="686" data-src="images/17-adn5-dx2.png">
-                <img class="page-style-top" data-width="768" data-height="1208" data-src="images/17-adn5-zz.png">
+            <div class="page" id="xk17" data-top="24191" data-width="768" data-height="1249">
+                <img alt="" class="page-bg" data-src="images/15-gqzhd05-bg.jpg" data-width="768" data-height="1249">
             </div>
-
-            <div class="page" id="xk18" data-top="29647" data-width="768" data-height="2242">
-                <img class="page-bg" data-width="768" data-height="2242" data-src="images/18-adn5-bg.jpg">
+            <div class="page" id="xk18" data-top="25440" data-width="768" data-height="1199">
+                <img alt="" class="page-bg" data-animal="{'item':{'type':1,'speed':50,'delay': 2,'music':{'url':['songs/16-gqzhp5-pa.mp3'],'outfade':2000, 'loop': false}}}" data-src="images/16-gqzhd05-bg.jpg" data-width="768" data-height="1199">
+                <img alt="" class="page-style-top" style="left: 768px;" data-animal="{'item': {'type': 1, 'speed': 30, 'delay': 0, 'transform': 'translate(-768px, 0px) translateZ(0px)'}}" data-src="images/16-gqzhd05-dx-1.png" data-width="768" data-height="1199">
             </div>
-
-            <div class="page" id="xk19" data-top="31889" data-width="768" data-height="2207">
-                <img class="page-bg" data-width="768" data-height="2207" data-src="images/19-adn5-bg.jpg">
+            <div class="page" id="xk19" data-top="26639" data-width="768" data-height="1181">
+                <img alt="" class="page-bg" data-width="768" data-height="1181" data-src="images/17-gqzhd05-bg.jpg">
             </div>
-
-            <div class="page" id="xk20" data-top="34096" data-width="768" data-height="1333">
-                <img class="page-bg" data-width="768" data-height="1333" data-src="images/20-adn5-bg.jpg">
-                <img class="page-style-top" style="left: 668px;top: -687px;" data-animal="{'item':{'type':1,'speed':20,'delay':3,'transform':'translate3d(-668px,687px,0)'},
-                                'item2':{'type':2,'speed':70,'delay':0,'music':{'url':['songs/20-adn5-line.mp3'],'outfade':2000}}}"
-                     data-width="768" data-height="978" data-src="images/20-adn5-dx1.png">
-                <img class="page-style-top" style="left:223px;top: -256px;" data-start="0.5"
-                     data-animal="{'item':{'type':1,'speed':20,'delay':3,'transform':'translate3d(-223px,256px,0)'}}"
-                     data-width="768" data-height="920" data-src="images/20-adn5-dx2.png">
-                <img class="page-style-bottom" style="left: 520px;bottom: 631px" data-start="0.6"
-                     data-animal="{'item':{'type':1,'speed':20,'delay':3,'transform':'translate3d(-520px,631px,0)'}}"
-                     data-width="768" data-height="666" data-src="images/20-adn5-dx3.png">
-                <img class="page-style-bottom" style="left: 334px;bottom: 483px" data-start="0.5"
-                     data-animal="{'item':{'type':1,'speed':20,'delay':3,'transform':'translate3d(-334px,483px,0)'}}"
-                     data-width="768" data-height="538" data-src="images/20-adn5-dx4.png">
-                <img class="page-style-bottom" style="left: 742px;bottom: 947px;"
-                     data-animal="{'item':{'type':1,'speed':20,'delay':5,'transform':'translate3d(-742px,947px,0)'}}"
-                     data-width="768" data-height="508" data-src="images/20-adn5-dx5.png">
-                <img class="page-style-top" data-width="768" data-height="1333" data-src="images/20-adn5-zz.png">
+            <div class="page" id="xk20" data-top="27820" data-width="768" data-height="1455">
+                <img alt="" class="page-bg" data-animal="{'item':{'type':1,'speed':30,'delay': 0,'music':{'url':['songs/18-gqzhp5-yi.mp3'],'outfade':2000, 'loop': false}}}" data-src="images/18-gqzhd05-bg.jpg" data-width="768" data-height="1455">
+                <img alt="" class="page-style-top" style="left: -768px;" data-animal="{'item': {'type': 0, 'speed': 20, 'delay': 0, 'transform': 'translate(768px, 0px) translateZ(0px)'}}" data-src="images/18-gqzhd05-dx-1.png" data-width="768" data-height="1455">
+                <img alt="" class="page-style-top" data-src="images/18-gqzhd05-zz.png" data-width="768" data-height="1455">
             </div>
-
-            <div class="page" id="xk21" data-top="35429" data-width="768" data-height="1982">
-                <img class="page-bg" data-width="768" data-height="1982" data-src="images/21-adn5-bg.jpg">
+            <div class="page" id="xk21" data-top="29275" data-width="768" data-height="1297">
+                <img alt="" class="page-bg" data-src="images/19-gqzhd05-bg.jpg" data-width="768" data-height="1297">
             </div>
-
-            <div class="page" id="xk22" data-top="37411" data-width="768" data-height="1798">
-                <img class="page-bg" data-width="768" data-height="1798" data-src="images/22-adn5-bg.jpg">
+            <div class="page" id="xk22" data-top="30572" data-width="768" data-height="1052">
+                <img alt="" class="page-bg" data-animal="{'item':{'type':1,'speed':50,'delay': 2,'music':{'url':['songs/20-gqzhp5-run.mp3'],'outfade':2000, 'loop': false}}}" data-src="images/20-gqzhd05-bg.jpg" data-width="768" data-height="1052">
             </div>
-
-            <div class="page" id="xk23" data-top="39209" data-width="768" data-height="1440">
-                <img class="page-bg"
-                     data-animal="{'item':{'type':1,'speed':60,'delay':3,'music':{'url':['songs/23-adn5-robots.mp3'],'outfade':2000}}}"
-                     data-width="768" data-height="1440" data-src="images/23-adn5-bg.jpg">
+            <div class="page" id="xk23" data-top="31624" data-width="768" data-height="1971">
+                <img alt="" class="page-bg" data-src="images/21-gqzhd05-bg.jpg" data-width="768" data-height="1971">
+                <img alt="" class="page-style-top" style="left: 768px;" data-animal="{'item': {'type': 0, 'speed': 15, 'delay': 0, 'transform': 'translate(-768px, 0px) translateZ(0px)'}}" data-src="images/21-gqzhd05-dx-1.png" data-width="768" data-height="1971">
+                <img alt="" class="page-style-top" data-src="images/21-gqzhd05-zz.png" data-width="768" data-height="1971">
             </div>
-
-            <div class="page" id="xk24" data-top="40649" data-width="768" data-height="2100">
-                <img class="page-bg" data-width="768" data-height="2100" data-src="images/24-adn5-bg.jpg">
+            <div class="page" data-bgm="{'item':{'loop':true,'newTeam':[0,4],'oldTeam':[0,4],'start':true,'outfade':2000,'startTop':0.4,'url':['songs/22-gqzhp5-wired.mp3'],'id':'xk2462245'}}" id="xk24" data-top="33595" data-width="768" data-height="3177">
+                <img alt="" class="page-bg" data-animal="{'item':{'type':1,'speed':20,'delay': 0,'music':{'url':['songs/22-gqzhp5-dang.mp3'],'outfade':2000, 'loop': false}}}" data-src="images/22-gqzhd05-bg.jpg" data-width="768" data-height="3177">
             </div>
-
-            <div class="page" id="xk25" data-top="42749" data-width="768" data-height="967">
-                <img class="page-bg"
-                     style="-webkit-transform:scale(1.6,1.6);-moz-transform:scale(1.6,1.6);-o-transform:scale(1.6,1.6);transform: scale(1.6,1.6)"
-                     data-start="0.5" data-animal="{'item':{'type':1,'speed':20,'delay':3,'transform':'scale(1,1)'}}"
-                     data-width="768" data-height="967" data-src="images/25-adn5-bg.jpg">
-                <img class="page-style-top" data-width="768" data-height="967" data-src="images/25-adn5-zz.png">
+            <div class="page" data-top="36772" id="xk25" data-width="768" data-height="1272">
+                <img alt="" class="page-bg" data-src="images/23-gqzhd05-bg.jpg" data-width="768" data-height="1272">
             </div>
-
-            <div class="page" id="xk26" data-top="43716" data-width="768" data-height="2573">
-                <img class="page-bg" data-width="768" data-height="2573" data-src="images/26-adn5-bg.jpg">
+            <div class="page" id="xk26" data-top="38044" data-width="768" data-height="1325">
+                <img alt="" class="page-bg" data-src="images/24-gqzhd05-bg.jpg" data-width="768" data-height="1325">
             </div>
-
-            <div class="page" id="xk27" data-top="46289" data-width="768" data-height="2100">
-                <img class="page-bg" data-start="0.4"
-                     data-animal="{'item':{'type':1,'speed':60,'delay':3,'music':{'url':['songs/27-adn5-shy.mp3'],'outfade':2000}}}"
-                     data-width="768" data-height="2100" data-src="images/27-adn5-bg.jpg">
+            <div class="page" id="xk27" data-top="39369" data-width="768" data-height="1394">
+                <img alt="" class="page-bg" data-src="images/25-gqzhd05-bg.jpg" data-width="768" data-height="1394">
+                <img alt="" class="page-style-top" style="opacity: 1;" data-animal="{'item': {'type': 0, 'speed': 0, 'delay': 4, 'opacity': '0'}}" data-src="images/25-gqzhd05-dx-1.png" data-width="768" data-height="1394">
+                <img alt="" class="page-style-top" style="opacity: 0;" data-animal="{'item': {'type': 0, 'speed': 5, 'delay': 4, 'opacity': '1'}}" data-src="images/25-gqzhd05-dx-2.png" data-width="768" data-height="1394">
+                <img alt="" class="page-style-top" data-src="images/25-gqzhd05-zz.png" data-width="768" data-height="1394">
             </div>
-
-            <div class="page" id="xk28" data-top="48389" data-width="768" data-height="2100">
-                <img class="page-bg" data-width="768" data-height="2100" data-src="images/28-adn5-bg.jpg">
+            <div class="page" data-bgm="{'item':{'loop':true,'newTeam':[0,4],'oldTeam':[0,4],'outfade':2000,'url':['songs/22-gqzhp5-wired.mp3'],'id':'xk2462245','start':false}}" id="xk28" data-top="40763" data-width="768" data-height="879">
+                <img alt="" class="page-bg" data-src="images/26-gqzhd05-bg.jpg" data-width="768" data-height="879">
             </div>
-
-            <div class="page" id="xk29"
-                 data-bgm="{'item':{'loop':false,'newTeam':[0,2],'oldTeam':[0,2],'outfade':2000,'url':['songs/29-adn5-throw.mp3'],'startTop':0.8,'start':true,'id':'xk298363'}}"
-                 data-top="50489" data-width="768" data-height="2592">
-                <img class="page-bg" data-width="768" data-height="2592" data-src="images/29-adn5-bg.jpg">
+            <div class="page" data-bgm="{'item':{'loop':true,'newTeam':[0,4],'oldTeam':[0,4],'start':true,'outfade':2000,'url':['songs/27-gqzhp5-black.mp3'],'id':'xk2962292'}}" id="xk29" data-top="41642" data-width="768" data-height="1075">
+                <img alt="" class="page-bg" data-src="images/27-gqzhd05-bg.jpg" data-width="768" data-height="1075">
+                <img alt="" class="page-style-top" data-animal="{'item':{'type':1,'speed':50,'delay':2,'transform':'translate(-30px 80px) translateZ(0px) scale(1.25, 1.25)'}}" data-src="images/27-gqzhd05-dx-1.png" data-width="768" data-height="1075">
+                <img alt="" class="page-style-top" data-src="images/27-gqzhd05-zz.png" data-width="768" data-height="1075">
             </div>
-
-            <div class="page" id="xk30" data-top="53081" data-width="768" data-height="1295"
-                 data-bgm="{'item':{'loop':false,'newTeam':[0,2],'oldTeam':[0,2],'outfade':2000,'url':['songs/29-adn5-throw.mp3'],'id':'xk298363'}}">
-                <img class="page-bg" data-start="0.3"
-                     data-animal="{'item':{'type':1,'speed':20,'delay':3,'transform':'translate3d(0,-40px,0) scale(2)'}}"
-                     data-width="768" data-height="1295" data-src="images/30-adn5-bg.jpg">
-                <img class="page-style-bottom" data-start="0.3"
-                     data-animal="{'item':{'type':1,'speed':20,'delay':3,'animation':'trans1XY 0.3s linear 10'}}"
-                     data-width="768" data-height="988" data-src="images/30-adn5-dx1.png">
-                <img class="page-style-bottom" style="opacity: 0;" data-start="0.3"
-                     data-animal="{'item':{'type':1,'speed':20,'delay':3,'opacity':'1'}}" data-width="768"
-                     data-height="1027" data-src="images/30-adn5-dx2.png">
-                <img class="page-style-top" data-width="768" data-height="1295" data-src="images/30-adn5-zz.png">
+            <div class="page" id="xk30" data-top="42717" data-width="768" data-height="1997">
+                <img alt="" class="page-bg" data-src="images/28-gqzhd05-bg.jpg" data-width="768" data-height="1997">
+                <img alt="" class="page-style-top" style="opacity: 0; z-index: 3;" data-animal="{'item': {'type': 2, 'speed': 20, 'delay': 1, 'opacity': '1'}}" data-src="images/28-gqzhd05-dx-1.png" data-width="768" data-height="1997">
+                <img alt="" class="page-style-top" style="opacity: 0; z-index: 2;" data-animal="{'item': {'type': 2, 'speed': 20, 'delay': 4, 'opacity': '1'}}" data-src="images/28-gqzhd05-dx-2.png" data-width="768" data-height="1997">
+                <img alt="" class="page-style-top" style="opacity: 0;z-index: 1;" data-animal="{'item': {'type': 2, 'speed': 20, 'delay': 5, 'opacity': '1'}}" data-src="images/28-gqzhd05-dx-3.png" data-width="768" data-height="1997">
+                <img alt="" class="page-style-top" style="z-index: 4;" data-src="images/28-gqzhd05-zz.png" data-width="768" data-height="1997">
             </div>
-
-            <div class="page" id="xk31" data-top="54376" data-width="768" data-height="1297"
-                 data-bgm="{'item':{'loop':false,'newTeam':[0,2],'oldTeam':[0,2],'outfade':2000,'url':['songs/29-adn5-throw.mp3'],'id':'xk298363','endTop':0.8,'start':false}}">
-                <img class="page-bg" data-width="768" data-height="1297" data-src="images/31-adn5-bg.jpg">
-                <img class="page-style-bottom" style="opacity: 0;"
-                     data-animal="{'item':{'type':1,'speed':20,'delay':4,'opacity':'1'}}" data-width="768"
-                     data-height="981" data-src="images/31-adn5-dx2.png">
-                <img class="page-style-bottom" style="opacity: 0;" data-start="0.1"
-                     data-animal="{'item':{'type':1,'speed':20,'delay':4,'opacity':'1'}}" data-width="768"
-                     data-height="1032" data-src="images/31-adn5-dx1.png">
-                <img class="page-style-top" data-width="768" data-height="1297" data-src="images/31-adn5-zz.png">
+            <div class="page" id="xk31" data-top="44714" data-width="768" data-height="1732">
+                <img alt="" class="page-bg" data-animal="{'item':{'type':1,'speed':60,'delay': 0,'music':{'url':['songs/29-gqzhp5-ghost.mp3'],'outfade':2000, 'loop': false}}}" data-src="images/29-gqzhd05-bg.jpg" data-width="768" data-height="1732">
+                <img alt="" class="page-style-top" data-width="768" style="opacity: 0;" data-animal="{'item': {'type': 0, 'speed': 20, 'delay': 1, 'opacity': '1'}}" data-height="1732" data-src="images/29-gqzhd05-dx-1.png">
+                <img alt="" class="page-style-top" style="opacity: 0;" data-animal="{'item': {'type': 2, 'speed': 20, 'delay': 4, 'opacity': '1'}}" data-src="images/29-gqzhd05-dx-2.png" data-width="768" data-height="1732">
+                <img alt="" class="page-style-top" style="opacity: 0;" data-animal="{'item': {'type': 2, 'speed': 20, 'delay': 5, 'opacity': '1'}}" data-src="images/29-gqzhd05-dx-3.png" data-width="768" data-height="1732">
+                <img alt="" class="page-style-top" data-src="images/29-gqzhd05-zz.png" data-width="768" data-height="1732">
             </div>
-
-            <div class="page" id="xk32" data-top="55673" data-width="768" data-height="2855">
-                <img class="page-bg" data-width="768" data-height="2855" data-src="images/32-adn5-bg.jpg">
-                <img class="page-style-bottom"
-                     data-animal="{'item':{'type':1,'speed':60,'delay':4,'transform':'translate3d(0,800px,0)'},
-                                'item2':{'type':2,'speed':60,'delay':0,'music':{'url':['songs/32-adn5-leaf.mp3'],'outfade':2000}}}"
-                     data-width="768" data-height="1558" data-src="images/32-adn5-dx1.png">
-                <img class="page-style-bottom"
-                     data-animal="{'item':{'type':1,'speed':20,'delay':5,'transform':'scale(1.5,1.5)'}}"
-                     data-width="768" data-height="1817" data-src="images/32-adn5-dx2.png">
+            <div class="page" id="xk32" data-top="46446" data-width="768" data-height="1828">
+                <img alt="" class="page-bg" data-src="images/30-gqzhd05-bg.jpg" data-width="768" data-height="1828">
+                <img alt="" class="page-style-top" data-animal="{'item': {'type': 0, 'speed': 100, 'delay': 0, 'animation': 'trans1XY 0.3s linear infinite'}}" data-src="images/30-gqzhd05-dx-1.png" data-width="768" data-height="1828">
             </div>
-
-            <div class="page" id="xk33" data-top="58528" data-width="768" data-height="1285">
-                <img class="page-bg" data-width="768" data-height="1285" data-src="images/33-adn5-bg.jpg">
-                <img class="page-style-top" style="opacity: 0;" data-start="0.1"
-                     data-animal="{'item':{'type':1,'speed':20,'delay':3,'opacity':1}}" data-width="768"
-                     data-height="544" data-src="images/33-adn5-dx1.png">
+            <div class="page" id="xk33" data-top="48274" data-width="768" data-height="2065">
+                <img alt="" class="page-bg" data-animal="{'item':{'type':1,'speed':60,'delay': 0,'music':{'url':['songs/31-gqzhp5-flash.mp3'],'outfade':2000, 'loop': false}}}" data-src="images/31-gqzhd05-bg.jpg" data-width="768" data-height="2065">
+                <img alt="" class="page-style-top" data-animal="{'item': {'type': 0, 'speed': 20, 'delay': 2, 'animation': 'opac 0.3s linear 5'}}" data-src="images/31-gqzhd05-dx-1.png" data-width="768" data-height="2065">
+                <img alt="" class="page-style-top" data-src="images/31-gqzhd05-zz.png" data-width="768" data-height="2065">
             </div>
-
-            <div class="page" id="xk34" data-top="59813" data-width="768" data-height="1327">
-                <img class="page-bg" data-width="768" data-height="1327" data-src="images/34-adn5-bg.jpg">
+            <div class="page" id="xk34" data-top="50339" data-width="768" data-height="2307">
+                <img alt="" class="page-bg" data-src="images/32-gqzhd05-bg.jpg" data-width="768" data-height="2307">
             </div>
-
-            <div class="page" id="xk35" data-top="61140" data-width="768" data-height="2123">
-                <img class="page-bg" data-width="768" data-height="2123" data-src="images/35-adn5-bg.jpg">
-                <img class="page-style-bottom"
-                     style="opacity: 0;" data-animal="{'item':{'type':1,'speed':10,'delay':1,'opacity':'1'}}" data-width="768"
-                     data-height="991" data-src="images/35-adn5-dx1.png">
-                <img class="page-style-bottom" style="opacity: 0;"
-                     data-animal="{'item':{'type':1,'speed':15,'delay':3,'opacity':'1'},
-                                'item2':{'type':2,'speed':30,'delay':0,'music':{'url':['songs/35-adn5-change.mp3'],'outfade':2000}}}"
-                     data-width="768" data-height="1002" data-src="images/35-adn5-dx2.png">
-                <img class="page-style-bottom" data-animal="{'item':{'type':1,'speed':15,'delay':3,'opacity':'0'}}"
-                     data-width="768" data-height="954" data-src="images/35-adn5-dx3.png">
+            <div class="page" data-bgm="{'item':{'loop':true,'newTeam':[0,13],'oldTeam':[0,13],'outfade':2000,'url':['songs/33-gqzhp5-clock.mp3'],'id':'xk3562391','start':true,'startTop':0.2}}" id="xk35" data-top="52646" data-width="768" data-height="1241">
+                <img alt="" class="page-bg" data-src="images/33-gqzhd05-bg.jpg" data-width="768" data-height="1241">
             </div>
-
-            <div class="page" id="xk36" data-top="63263" data-width="768" data-height="1293">
-                <img class="page-bg" data-width="768" data-height="1293" data-src="images/36-adn5-bg.jpg">
-                <img class="page-style-top" style="opacity: 0;" data-start="0.2"
-                     data-animal="{'item':{'type':1,'speed':20,'delay':3,'opacity':'1'}}" data-width="768"
-                     data-height="631" data-src="images/36-adn5-dx1.png">
-                <img class="page-style-bottom" data-animal="{'item':{'type':1,'speed':20,'delay':3,'opacity':'0'},
-                 'item2':{'type':2,'speed':30,'delay':0,'music':{'url':['songs/35-adn5-change.mp3'],'outfade':2000}}}"
-                     data-width="768" data-height="496" data-src="images/36-adn5-dx2.png">
+            <div class="page" id="xk36" data-top="53887" data-width="768" data-height="1176">
+                <img alt="" class="page-bg" data-src="images/34-gqzhd05-bg.jpg" data-width="768" data-height="1176">
             </div>
-
-            <div class="page" id="xk37" data-top="64556" data-width="768" data-height="2607">
-                <img class="page-bg" data-width="768" data-height="2607" data-src="images/37-adn5-bg.jpg">
+            <div class="page" id="xk37" data-top="55063" data-width="768" data-height="2042">
+                <img alt="" class="page-bg" data-src="images/35-gqzhd05-bg.jpg" data-width="768" data-height="2042">
             </div>
+            <div class="page" id="xk38" data-top="57105" data-width="768" data-height="1195">
+                <img alt="" class="page-bg" data-src="images/36-gqzhd05-bg.jpg" data-animal="{'item':{'type':1,'speed':60,'delay': 3,'music':{'url':['songs/36-gqzhp5-zzz.mp3'],'outfade':2000, 'loop': false}}}" data-width="768" data-height="1195">
+            </div>
+            <div class="page" id="xk39" data-top="58300" data-width="768" data-height="1787">
+                <img alt="" class="page-bg" data-src="images/37-gqzhd05-bg.jpg" data-width="768" data-height="1787">
+            </div>
+            <div class="page" id="xk40" data-top="60087" data-width="768" data-height="1561">
+                <img alt="" class="page-bg" data-src="images/38-gqzhd05-bg.jpg" data-width="768" data-height="1561">
+                <img alt="" class="page-style-top" style="opacity: 0;" data-animal="{'item': {'type': 1, 'speed': 20, 'delay': 4, 'opacity': '1'}}" data-src="images/38-gqzhd05-dx-1.png" data-width="768" data-height="1561">
+            </div>
+            <div class="page" id="xk41" data-top="61648" data-width="768" data-height="1846">
+                <img alt="" class="page-bg" data-src="images/40-gqzhd05-bg.jpg" data-width="768" data-height="1846">
+                <img alt="" class="page-style-top" style="left:-768px;" data-animal="{'item': {'type': 1, 'speed': 40, 'delay': 2, 'transform': 'translate(768px, 0px) translateZ(0px)'}}" data-src="images/40-gqzhd05-dx-1.png" data-width="768" data-height="1846">
+                <img alt="" class="page-style-top" style="left:350px;" data-animal="{'item': {'type': 1, 'speed': 40, 'delay': 2, 'transform': 'translate(-350px, 0px), translateZ(0px)'}}" data-src="images/40-gqzhd05-dx-2.png" data-width="768" data-height="1846">
+                <img alt="" class="page-style-top" data-src="images/40-gqzhd05-zz.png" data-width="768" data-height="1846">
+            </div>
+            <div class="page" id="xk42" data-top="63494" data-width="768" data-height="1849">
+                <img alt="" class="page-bg" data-src="images/41-gqzhd05-bg.jpg" data-width="768" data-height="1849">
+            </div>
+            <div class="page" id="xk43" data-top="65343" data-width="768" data-height="2505">
+                <img alt="" class="page-bg" data-src="images/42-gqzhd05-bg.jpg" data-width="768" data-height="2505">
+                <img alt="" class="page-style-top" style="left: -768px;" data-animal="{'item': {'type': 1, 'speed': 50, 'delay': 1, 'transform': 'translate(768px, 0px), translateZ(0px)'}}" data-src="images/42-gqzhd05-dx-1.png" data-width="768" data-height="2505">
+                <img alt="" class="page-style-top" style="left: 768px;" data-animal="{'item': {'type': 2, 'speed': 50, 'delay': 1, 'transform': 'translate(-768px, 0px), translateZ(0px)'}}" data-src="images/42-gqzhd05-dx-2.png" data-width="768" data-height="2505">
+                <img alt="" class="page-style-top" style="left: -768px;" data-animal="{'item': {'type': 2, 'speed': 50, 'delay': 1, 'transform': 'translate(768px, 0px), translateZ(0px)'}}" data-src="images/42-gqzhd05-dx-3.png" data-width="768" data-height="2505">
+            </div>
+            <div class="page" id="xk44" data-top="67848" data-width="768" data-height="1454">
+                <img alt="" class="page-bg" data-src="images/43-gqzhd05-bg.jpg" data-animal="{'item':{'type':1,'speed':35,'delay': 1,'music':{'url':['songs/43-gqzhp5-cry.mp3'],'outfade':2000, 'loop': false}}}" data-width="768" data-height="1454">
+                <img alt="" class="page-style-top" data-animal="{'item': {'type': 1, 'speed': 20, 'delay': 4, 'transform': 'translate(-768px, 768px)'}}" data-src="images/43-gqzhd05-dx-1.png" data-width="768" data-height="1454">
+                <img alt="" class="page-style-top" data-src="images/43-gqzhd05-zz.png" data-animal="{'item':{'type':1,'speed':30,'delay': 70,'music':{'url':['songs/43-gqzhp5-locker.mp3'],'outfade':2000, 'loop': false}}}" data-width="768" data-height="1454">
+            </div>
+            <div class="page" id="xk45" data-top="69302" data-width="768" data-height="1718">
+                <img alt="" class="page-bg" data-src="images/44-gqzhd05-bg.jpg" data-width="768" data-height="1718">
+                <img alt="" class="page-style-top" style="opacity: 0;" data-animal="{'item': {'type': 1, 'speed': 25, 'delay': 1, 'opacity': '1'}}" data-src="images/44-gqzhd05-dx-1.png" data-width="768" data-height="1718">
+                <img alt="" class="page-style-top" style="opacity: 0;" data-animal="{'item': {'type': 1, 'speed': 25, 'delay': 4, 'opacity': '1'}}" data-src="images/44-gqzhd05-dx-2.png" data-width="768" data-height="1718">
+                <img alt="" class="page-style-top" data-src="images/44-gqzhd05-zz.png" data-width="768" data-height="1718">
+            </div>
+            <div class="page" id="xk46" data-top="71020" data-width="768" data-height="1956">
+                <img alt="" class="page-bg" data-src="images/45-gqzhd05-bg.jpg" data-width="768" data-height="1956">
+            </div>
+            <div class="page" id="xk47" data-top="72976" data-width="768" data-height="1368">
+                <img alt="" class="page-bg" data-src="images/46-gqzhd05-bg.jpg" data-width="768" data-height="1368">
+            </div>
+            <div class="page" id="xk48" data-top="74344" data-width="768" data-height="1158">
+                <img alt="" class="page-bg" data-src="images/47-gqzhd05-bg.jpg" data-width="768" data-height="1158">
+            </div>
+            <div class="page" id="xk49" data-top="75502" data-width="768" data-height="1877">
+                <img alt="" class="page-bg" data-src="images/48-gqzhd05-bg.jpg" data-animal="{'item':{'type':1,'speed':35,'delay': 2,'music':{'url':['songs/48-gqzhp5-open.mp3'],'outfade':2000, 'loop': false}}}" data-width="768" data-height="1877">
+            </div>
+            <div class="page" id="xk50" data-top="77379" data-width="768" data-height="1447">
+                <img alt="" class="page-bg" data-src="images/49-gqzhd05-bg.jpg" data-animal="{'item':{'type':1,'speed':60,'delay': 2,'music':{'url':['songs/49-gqzhp5-blind.mp3'],'outfade':2000, 'loop': false}}}" data-width="768" data-height="1447">
+            </div>
+            <div class="page" id="xk51" data-top="78826" data-width="768" data-height="1824">
+                <img alt="" class="page-bg" data-src="images/50-gqzhd05-bg.jpg" data-width="768" data-height="1824">
+            </div>
+            <div class="page" id="xk52" data-top="80650" data-width="768" data-height="2089">
+                <img alt="" class="page-bg" data-src="images/51-gqzhd05-bg.jpg" data-width="768" data-height="2089">
+            </div>
+            <div class="page" id="xk53" data-top="82739" data-width="768" data-height="1258">
+                <img alt="" class="page-bg" data-src="images/52-gqzhd05-bg.jpg" data-width="768" data-height="1258">
+            </div>
+            <div class="page" data-bgm="{'item':{'loop':true,'newTeam':[0,11],'oldTeam':[0,11],'outfade':2000,'url':['songs/54-gqzhp5-snow.mp3'],'id':'xk5462594','start':true,'startTop':0.2}}" id="xk54" data-top="83997" data-width="768" data-height="1287">
+                <img alt="" class="page-bg" data-src="images/54-gqzhd05-bg.jpg" data-width="768" data-height="1287">
+            </div>
+            <div class="page" id="xk55" data-top="85284" data-width="768" data-height="2472">
+                <img alt="" class="page-bg" data-src="images/55-gqzhd05-bg.jpg" data-width="768" data-height="2472">
+                <img alt="" class="page-style-top" data-animal="{'item': {'type': 0, 'speed': 50, 'delay': 0, 'animation': 'snow1 0.5s ease infinite'}}" data-src="images/55-gqzhd05-dx-1.png" data-width="768" data-height="2472">
+                <img alt="" class="page-style-top" data-animal="{'item': {'type': 0, 'speed': 50, 'delay': 0, 'animation': 'snow2 0.5s ease infinite'}}" data-src="images/55-gqzhd05-dx-2.png" data-width="768" data-height="2472">
+                <img alt="" class="page-style-top" data-animal="{'item': {'type': 0, 'speed': 50, 'delay': 0, 'animation': 'snow3 0.5s ease infinite'}}" data-src="images/55-gqzhd05-dx-3.png" data-width="768" data-height="2472">
+                <img alt="" class="page-style-top" data-src="images/55-gqzhd05-zz.png" data-width="768" data-height="2472">
+            </div>
+            <div class="page" id="xk56" data-top="87756" data-width="768" data-height="909">
+                <img alt="" class="page-bg" data-src="images/56-gqzhd05-bg.jpg" data-width="768" data-height="909">
 
-            <div class="page" id="xk38" data-top="67163" data-width="768" data-height="1516">
-                <img class="page-bg" data-width="768" data-height="1516" data-src="images/end.jpg">
+            </div>
+            <div class="page" id="xk57" data-top="88665" data-width="768" data-height="1081">
+                <img alt="" class="page-bg" data-src="images/57-gqzhd05-bg.jpg" data-width="768" data-height="1081">
+            </div>
+            <div class="page" id="xk58" data-top="89746" data-width="768" data-height="1201">
+                <img alt="" class="page-bg" data-src="images/58-gqzhd05-bg.jpg" data-width="768" data-height="1201">
+            </div>
+            <div class="page" data-bgm="{'item':{'loop':true,'newTeam':[0,1],'oldTeam':[0,1],'outfade':2000,'url':['songs/59-gqzhp5-walk.mp3'],'id':'xk5962626','start':true,'startTop':0.2}}" id="xk59" data-top="90947" data-width="768" data-height="1162">
+                <img alt="" class="page-bg" data-src="images/59-gqzhd05-bg.jpg" data-width="768" data-height="1162">
+                <img alt="" class="page-style-top" style="opacity: 0;" data-animal="{'item': {'type': 0, 'speed': 30, 'delay': 4, 'opacity': '1'}}" data-src="images/59-gqzhd05-dx-1.png" data-width="768" data-height="1162">
+                <img alt="" class="page-style-top" data-src="images/59-gqzhd05-zz.png" data-width="768" data-height="1162">
+            </div>
+            <div class="page" id="xk60" data-top="92109" data-width="768" data-height="1363">
+                <img alt="" class="page-bg" data-src="images/60-gqzhd05-bg.jpg" data-width="768" data-height="1363">
+                <img alt="" class="page-style-top" style="opacity: 0;" data-animal="{'item': {'type': 0, 'speed': 30, 'delay': 4, 'opacity': '1'}}" data-src="images/60-gqzhd05-dx-1.png" data-width="768" data-height="1363">
+            </div>
+            <div class="page" id="xk61" data-top="93472" data-width="768" data-height="1393">
+                <img alt="" class="page-bg" data-src="images/61-gqzhd05-bg.jpg" data-width="768" data-height="1393">
+            </div>
+            <div class="page" id="xk62" data-top="94865" data-width="768" data-height="1407">
+                <img alt="" class="page-bg" data-src="images/62-gqzhd05-bg.jpg" data-animal="{'item':{'type':1,'speed':40,'delay': 0,'music':{'url':['songs/62-gqzhp5-wind.mp3'],'outfade':2000, 'loop': false}}}" data-width="768" data-height="1407">
+            </div>
+            <div class="page" id="xk63" data-top="96272" data-width="768" data-height="1553">
+                <img alt="" class="page-bg" data-src="images/63-gqzhd05-bg.jpg" data-width="768" data-height="1553">
+            </div>
+            <div class="page" data-bgm="{'item':{'loop':true,'newTeam':[0,1],'oldTeam':[0,1],'outfade':2000,'url':['songs/59-gqzhp5-walk.mp3'],'id':'xk6462682','start':true,'startTop':0}}" id="xk64" data-top="97825" data-width="768" data-height="3240">
+                <img alt="" class="page-bg" data-src="images/64-gqzhd05-bg.jpg" data-width="768" data-height="3240">
+                <img alt="" class="page-style-top" style="opacity: 0;" data-animal="{'item': {'type': 1, 'speed': 20, 'delay': 1, 'opacity': '1'}}" data-src="images/64-gqzhd05-dx-1.png" data-width="768" data-height="3240">
+                <img alt="" class="page-style-top" style="opacity: 0;" data-animal="{'item': {'type': 3, 'speed': 20, 'delay': 5, 'opacity': '1'}}" data-src="images/64-gqzhd05-dx-2.png" data-width="768" data-height="3240">
+                <img alt="" class="page-style-top" style="opacity: 0;" data-animal="{'item': {'type': 3, 'speed': 20, 'delay': 8, 'opacity': '1'}}" data-src="images/64-gqzhd05-dx-3.png" data-width="768" data-height="3240">
+            </div>
+            <div class="page" id="xk65" data-top="101065" data-width="768" data-height="2492">
+                <img alt="" class="page-bg" data-src="images/65-gqzhd05-bg.jpg" data-width="768" data-height="2492">
+                <img alt="" class="page-style-top" style="opacity: 1;" data-animal="{'item': {'type': 1, 'speed': 50, 'delay': 5, 'opacity': '0'}}" data-src="images/65-gqzhd05-dx-1.png" data-width="768" data-height="2492">
+                <img alt="" class="page-style-top" data-src="images/65-gqzhd05-zz.png" data-width="768" data-height="2492">
+            </div>
+            <div class="page" id="xk66" data-top="103557" data-width="768" data-height="1680">
+                <img alt="" class="page-bg" data-src="images/end.jpg" data-width="768" data-height="1680">
             </div>
         </div>
         <div id="dt-other-box" class="xk-add-other">
+            <img class="ot-page-img" data-src="images/end.jpg">
+            <div id="dt-tool-bottom" class="xk-bottom-menu page_child_bottom">
+                <a id="dt-tool-pre" class="xk-bttom-btn-style xk-bttom-pre">
+                    <i>上一话</i>
+                </a>
+                <a id="dt-tool-home" class="xk-bttom-btn-style xk-bttom-list">目录</a>
+                <a id="dt-tool-next" class="xk-bttom-btn-style xk-bttom-next">
+                    <i>下一话</i>
+                </a>
+            </div>
+
         </div>
     </div>
 
@@ -389,18 +673,18 @@
 
 </div>
 <script src="main.js"></script>
-<script>
-    // var dtMenu = new DtMenu('dt-scrollor');
-    // var dtAnimal = new XkAnimal({
-    //     type: 1,
-    //     data: 'dt-scrollor',
-    //     play: '',
-    //     background: 'black'
-    // });
-    // var dtMusicBtn = new DtMusicBtn('musicBtn', dtAnimal);
-</script>
+<!-- <script>
+    var dtMenu = new DtMenu('dt-scrollor');
+    var dtAnimal = new XkAnimal({
+        type: 1,
+        data: 'dt-scrollor',
+        play: '',
+        background: 'black'
+    });
+    var dtMusicBtn = new DtMusicBtn('musicBtn', dtAnimal);
+</script> -->
 
 
 
-</body>
-</html>
+
+</body></html>

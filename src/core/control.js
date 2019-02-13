@@ -24,7 +24,7 @@ export default class Control {
 
         this.status = 0                                  //页面状态，3种取值0、1、2，0表示处于加载动画，1表示浏览模式，2表示触及底部，即结束
 
-        this.pageActive = []                             //处于屏幕可视区域的page列表
+        this.pageActive = [0, 1, 2]                             //处于屏幕可视区域的page列表
         
         this.animateActive = []                          //处于以当前屏幕为中心，往上两个可视屏幕，往下两个可视屏幕，此范围内的活动动画索引列表
         this.animates = []                               //动画列表，列表元素为实例化动画对象，其中包括音乐对象
@@ -84,8 +84,10 @@ export default class Control {
         
         //以下部分应在页面加载完成后，置于此处，便于当前调试
         animateContent.style.height = animateContent.getAttribute('data-boxHeight') + 'px'
+        self.resource.load(self.pageActive)
         self.scroll.initEvent(false, function (top) {
             console.log(top)
+
         })
 
     }
@@ -283,7 +285,6 @@ export default class Control {
         function getConfig(dom, str, i) {
 
             let config = dom.getAttribute(str)
-            let type
             let format = {     //格式化的单项动画配置
                 id: i,
                 ele: dom,
@@ -389,8 +390,8 @@ export default class Control {
                         break
                     }
                     case 1: {            //所属元素的起点top
-            
-                        start = self.utils.getStyleRect(page).top + self.utils.getStyleRect(animate.ele).top
+
+                        start = self.utils.getStyleRect(page).top
                         break
                     }
                     case 2: {            //同个元素的上一个动画的初始top，跟上一个动画同时播放
@@ -438,7 +439,7 @@ export default class Control {
                         break
                     }
                     default: {            //delay为[0,1]，自定义延迟高度
-                        start = start + screenHeight * config.delay
+                        start = start + screenHeight * (config.delay / 100)
                         break
                     }
                 }
@@ -474,11 +475,11 @@ export default class Control {
             animate.top = Math.round(start)
             animate.bottom = Math.round(end)
 
-            switch (animate.type) {  //实例化各类动画
-                case 'music': {
-                    list[i] = new Music(animate)
-                    break
-                }
+            // switch (animate.type) {  //实例化各类动画
+            //     case 'music': {
+            //         list[i] = new Music(animate)
+            //         break
+            //     }
             //     case 'animate': {
             //         list[i] = new Animate(animate)
             //         break
@@ -499,7 +500,7 @@ export default class Control {
             //         list[i] = null
             //         break
             //     }
-            }
+            // }
 
 
 
