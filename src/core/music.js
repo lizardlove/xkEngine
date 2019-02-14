@@ -27,6 +27,7 @@ export default class Music {
 
         if (self.top <= top && self.bottom > top) {
             if (!self.howler) {
+                console.log('play')
                 self.howler = new Howl({src: self.config.url, loop: self.config.loop, autoplay: true})
             }
         } else {
