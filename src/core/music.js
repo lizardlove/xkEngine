@@ -20,24 +20,26 @@ export default class Music {
         this.howler = null
     }
 
-    play(top){
+    play(){
 
         let self = this
         let config = self.config
 
-        if (self.top <= top && self.bottom > top) {
-            if (!self.howler) {
-                console.log('play')
-                self.howler = new Howl({src: self.config.url, loop: self.config.loop, autoplay: true})
-            }
-        } else {
-            self.stop()
+        if (!self.howler) {
+            self.howler = new Howl({src: config.url, loop: config.loop, autoplay: true})
         }
 
+
     }
+
     stop(){
-        self.howler.stop()
+
+        let self = this
+        if (self.howler) {
+            self.howler.stop()
+        }
         self.howler = null
+        
     }
 
 

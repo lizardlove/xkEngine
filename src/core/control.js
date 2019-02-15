@@ -25,9 +25,9 @@ export default class Control {
         this.status = 0                                  //页面状态，3种取值0、1、2，0表示处于加载动画，1表示浏览模式，2表示触及底部，即结束
 
         this.oldPageActive = []
-        this.pageActive = [0,1,2]                           //处于屏幕可视区域的page列表
+        this.pageActive = []                           //处于屏幕可视区域的page列表
         
-        this.animateActive = [0]                          //处于以当前屏幕为中心，往上两个可视屏幕，往下两个可视屏幕，此范围内的活动动画索引列表
+        this.animateActive = []                          //处于以当前屏幕为中心，往上两个可视屏幕，往下两个可视屏幕，此范围内的活动动画索引列表
         this.animates = []                               //动画列表，列表元素为实例化动画对象，其中包括音乐对象
 
         this.resource = new Resource()                   //资源控制器，主要用于资源的控制和预加载
@@ -85,26 +85,19 @@ export default class Control {
         
         //以下部分应在页面加载完成后，置于此处，便于当前调试
         animateContent.style.height = animateContent.getAttribute('data-boxHeight') + 'px'
-        console.log(self.utils.scrollTop())
-        // self.pageActive = self._modify(self.pageArray, self.pageActive, self.utils.scrollTop())
-        // self.animateActive = self._modify(self.animates, self.animateActive, self.utils.scrollTop())
+        self.pageActive = self._modify(self.pageArray, self.pageActive, self.utils.scrollTop())
+
+        self.animateActive = self._modify(self.animates, self.animateActive, self.utils.scrollTop())
+
         self.resource.load(self.pageActive)
-        self.status = 1
-        self.play()
+        self.play(self.utils.scrollTop())
 
 
         self.scroll.initEvent(false, function (top) {
 
-            let displayStart, displayEnd, screenHeight
-
-            screenHeight = self.utils.height
-
+            let screenHeight = self.utils.height
+            self.status = 1
             self.basePointTop = top + self.basePoint * screenHeight
-
-            displayStart = top - screenHeight * 3
-            displayStart = displayStart < 0 ? 0 : displayStart
-
-            displayEnd = top + screenHeight * 3
 
             self.oldPageActive = self.pageActive
             self.pageActive = self._modify(self.pageArray, self.pageActive, top)
@@ -134,17 +127,24 @@ export default class Control {
 
         })
 
-        // self.animateActive.forEach(index => {
-        //     let animate = self.animates[index]
+        self.animateActive.forEach(index => {
+            let animate = self.animates[index]
+            switch (animate.type) {
 
-        //     switch (animate.type) {
-        //         case 'music': {
-        //             if (!animate.howler) {
-        //                 animate.play(top)
-        //             }
-        //         }
-        //     }
-        // })
+                case 'music': {
+
+                    if (animate.status == 2) {
+                        animate.play()
+                    } else {
+                        animate.stop()
+                    }
+
+                }
+
+                
+            }
+            
+        })
 
         function flash(page) {
             let child, src
@@ -162,6 +162,7 @@ export default class Control {
             }
         }
     }
+
     _modify(objects, active, top) {
         let self = this
         let ac = []
@@ -175,7 +176,7 @@ export default class Control {
         startPre = startPre < 0 ? 0 : startPre
 
         endIn = top + screenHeight
-        endPre = top + screenHeight * 3
+        endPre = top + screenHeight * 2
 
         active.forEach(index => {
             rect = self.utils.isDom(objects[index]) ? self.utils.getStyleRect(objects[index]) : objects[index]
@@ -183,7 +184,8 @@ export default class Control {
             if ( (bottom > startPre && bottom < startIn) || (rect.top > endIn && rect.top < endPre) ) {
                 objects[index].status = 1
                 ac.push(index)
-            } else if (bottom > startIn || rect.top < endIn) {
+            } else if (bottom > startIn && rect.top < endIn) {
+                
                 objects[index].status = 2
                 ac.push(index)
             } else {
@@ -200,12 +202,13 @@ export default class Control {
             if ( (bottom > startPre && bottom < startIn) || (rect.top > endIn && rect.top < endPre) ) {
                 objects[i].status = 1
                 ac.push(i)
-            } else if (bottom > startIn || rect.top < endIn) {
+            } else if (bottom > startIn && rect.top < endIn) {
                 objects[i].status = 2
                 ac.push(i)
             } else {
                 break
             }
+
         }
 
         return ac
