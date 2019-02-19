@@ -8,7 +8,7 @@ export default class Music {
         this.status = config.status
         this.top = config.top
         this.bottom = config.bottom
-        this.type = config.type
+        // this.type = config.type
 
         this.config = {
             loop: config.config.music.loop,

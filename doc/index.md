@@ -86,9 +86,8 @@
 | resource      | Object   | 资源控制器，主要用于资源的控制和预加载             |
 | scroll        | Object   | 滑动控制器，主要用于滑动的控制，滑动相关参数的计算 |
 | utils         | Object   | 工具函数库                                         |
-| init(ele)     | Function | 解析DOM，动画配置，资源并分类，计算绝对定位        |
-
-
+| init          | Function | 解析DOM，动画配置，资源并分类，计算绝对定位        |
+| play          | Function | 接收滑动高度，执行动画                             |
 
 ### Scroll
 
@@ -113,11 +112,12 @@
 
 > 存储和控制整个页面的资源，并按需进行资源预加载
 
-| 属性                   | 类型     | 说明                                         |
-| ---------------------- | -------- | -------------------------------------------- |
-| box                    | Array    | 依次存放单页依赖的资源                       |
-| load(index)            | Function | 根据传入的页索引，对该页依赖的资源进行预加载 |
-| error(){return status} | Function | 资源加载，超时的错误控制，返回一个状态码     |
+| 属性        | 类型     | 说明                                         |
+| ----------- | -------- | -------------------------------------------- |
+| box         | Array    | 依次存放单页依赖的资源                       |
+| load(index) | Function | 根据传入的页索引，对该页依赖的资源进行预加载 |
+| _imageLoad  | Function | 图片资源加载，超时的错误控制重新加载         |
+| _musicLoad  | Function | 音乐资源加载并静音播放1s                     |
 
 ### Utils
 
@@ -170,9 +170,17 @@
 
 > 音乐对象的封装
 
-| 属性 | 类型 | 说明 |
-| ---- | ---- | ---- |
-|      |      |      |
+| 属性   | 类型     | 说明                  |
+| ------ | -------- | --------------------- |
+| id     | Number   | 全局动画id            |
+| ele    | Object   | 所属的DOM对象         |
+| status | Number   | 0 静止，1 准备，2播放 |
+| top    | Number   | 全局绝对高度，起点    |
+| bottom | Number   | 全局绝对高度，终点    |
+| config | Object   | 播放相关配置          |
+| howler | Object   | howler音乐对象        |
+| play   | Function | 播放音乐              |
+| stop   | Function | 暂停并注销howler对象  |
 
 #### Animate
 
