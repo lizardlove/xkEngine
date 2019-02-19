@@ -85,7 +85,7 @@ export default class Control {
         
         //执行准备，初始化活动对象
         animateContent.style.height = animateContent.getAttribute('data-boxHeight') + 'px'
-        window.scrollTo(0,5000)
+        // setTimeout(function() {self.utils.window.scrollTo(0,1000)}, 10)
         self.pageActive = self._modify(self.pageArray, self.pageActive, self.utils.scrollTop())
 
         self.animateActive = self._modify(self.animates, self.animateActive, self.utils.scrollTop())
@@ -95,7 +95,7 @@ export default class Control {
 
         //绑定滑动事件
         self.scroll.initEvent(false, function (top) {
-
+            
             let screenHeight = self.utils.height
             self.status = 1
             
@@ -108,7 +108,7 @@ export default class Control {
             self.resource.load(self.pageActive)                                       //预加载资源
 
             self.play(top)                                                            //执行动画
-
+            
         })
 
     }
@@ -148,18 +148,38 @@ export default class Control {
                     }
                     break
                 }
-                case 'animate': {
-                    break
-                }
-                case 'swing': {
-                    break
-                }
-                case 'full': {
-                    break
-                }
-                case 'gif': {
-                    break
-                }
+                // case 'animate': {
+                //     if (animate.status == 2 && animate.top < self.basePointTop) {
+                //         animate.play()
+                //     } else {
+                //         animate.stop()
+                //     }
+                //     break
+                // }
+                // case 'swing': {
+                //     if (animate.status == 2 && animate.top < self.basePointTop) {
+                //         animate.play()
+                //     } else {
+                //         animate.stop()
+                //     }
+                //     break
+                // }
+                // case 'full': {
+                //     if (animate.status == 2 && animate.top < self.basePointTop) {
+                //         animate.play()
+                //     } else {
+                //         animate.stop()
+                //     }
+                //     break
+                // }
+                // case 'gif': {
+                //     if (animate.status == 2 && animate.top < self.basePointTop) {
+                //         animate.play()
+                //     } else {
+                //         animate.stop()
+                //     }
+                //     break
+                // }
                 default: break
 
 

@@ -46,8 +46,8 @@ export default class Scroll {
         self.callback = callback
 
         if (callback && typeof callback !== 'function') {
-            throw new Error('参数错误！传入的不是function')
             alert('参数错误！传入的不是function')
+            // throw new Error('参数错误！传入的不是function')  
             return 
         }
 

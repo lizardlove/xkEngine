@@ -13,8 +13,8 @@ export default class Music {
         this.config = {
             loop: config.config.music.loop,
             url: config.config.music.url,
-            infade: config.config.music.infade,
-            outfade: config.config.music.outfade
+            inFade: config.config.music.infade,
+            outFade: config.config.music.outfade
         }
 
         this.howler = null
@@ -26,7 +26,12 @@ export default class Music {
         let config = self.config
 
         if (!self.howler) {
-            self.howler = new Howl({src: config.url, loop: config.loop, autoplay: true})
+            self.howler = new Howl({src: config.url, loop: config.loop, autoplay: false})
+            self.howler.volume(1);
+            self.howler.play()
+            if (config.inFade) {
+                self.fade(0, 1, config.inFade)
+            }
         }
 
 
@@ -36,7 +41,12 @@ export default class Music {
 
         let self = this
         if (self.howler) {
-            self.howler.stop()
+            if (self.config.outFade) {
+                let fade = self.howler.volume()
+                self.howler.fade(fade, 0, self.config.outFade)
+            } else {
+                self.howler.stop()
+            }
         }
         self.howler = null
         
