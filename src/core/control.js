@@ -83,8 +83,9 @@ export default class Control {
         self._computeAnimates(self.animates)     //计算动画的触发高度和结束高度，并实例化各类动画
 
         
-        //以下部分应在页面加载完成后，置于此处，便于当前调试
+        //执行准备，初始化活动对象
         animateContent.style.height = animateContent.getAttribute('data-boxHeight') + 'px'
+        window.scrollTo(0,5000)
         self.pageActive = self._modify(self.pageArray, self.pageActive, self.utils.scrollTop())
 
         self.animateActive = self._modify(self.animates, self.animateActive, self.utils.scrollTop())
@@ -92,25 +93,32 @@ export default class Control {
         self.resource.load(self.pageActive)
         self.play(self.utils.scrollTop())
 
-
+        //绑定滑动事件
         self.scroll.initEvent(false, function (top) {
 
             let screenHeight = self.utils.height
             self.status = 1
-            self.basePointTop = top + self.basePoint * screenHeight
-
-            self.oldPageActive = self.pageActive
+            
+            self.basePointTop = top + self.basePoint * screenHeight                   //触发点更新
+            
+            self.oldPageActive = self.pageActive                                      //活动组更新
             self.pageActive = self._modify(self.pageArray, self.pageActive, top)
             self.animateActive = self._modify(self.animates, self.animateActive, top)
             
-            self.resource.load(self.pageActive)
+            self.resource.load(self.pageActive)                                       //预加载资源
 
-            self.play(top)
+            self.play(top)                                                            //执行动画
 
         })
 
     }
 
+    /**
+     *接收滑动高度，执行动画
+     *
+     * @param {Number} top 滑动高度
+     * @memberof Control
+     */
     play(top) {
         
         let self = this
@@ -133,19 +141,37 @@ export default class Control {
 
                 case 'music': {
 
-                    if (animate.status == 2) {
+                    if (animate.status == 2 && animate.top < self.basePointTop) {
                         animate.play()
                     } else {
                         animate.stop()
                     }
-
+                    break
                 }
+                case 'animate': {
+                    break
+                }
+                case 'swing': {
+                    break
+                }
+                case 'full': {
+                    break
+                }
+                case 'gif': {
+                    break
+                }
+                default: break
 
-                
+
             }
             
         })
 
+        /**
+         *控制page显示
+         *
+         * @param {Object} page 页对象
+         */
         function flash(page) {
             let child, src
             child = page.children || self.utils.getChildList(page)
@@ -163,6 +189,12 @@ export default class Control {
         }
     }
 
+    /**
+     * 通过滑动高度更新活动集合，处于活动范围内的对象标记位活动对象
+     * @param {Array} objects 同类对象集合
+     * @param {Array} active  活动对象集合
+     * @param {Number} top    当前滑动高度
+     */
     _modify(objects, active, top) {
         let self = this
         let ac = []
@@ -206,7 +238,7 @@ export default class Control {
                 objects[i].status = 2
                 ac.push(i)
             } else {
-                break
+                objects[i].status = 0
             }
 
         }

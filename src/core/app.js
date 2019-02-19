@@ -5,3 +5,4 @@ let xkAnimate = new Control({
 })
 console.log("animates:", xkAnimate.animates)
 // console.log("resources:", xkAnimate.resource.box)
+
