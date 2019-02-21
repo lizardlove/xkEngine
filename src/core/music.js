@@ -8,7 +8,7 @@ export default class Music {
         this.status = config.status
         this.top = config.top
         this.bottom = config.bottom
-        // this.type = config.type
+        this.type = config.type
 
         this.config = {
             loop: config.config.music.loop,
@@ -20,15 +20,16 @@ export default class Music {
         this.howler = null
     }
 
-    play(){
+    async play(){
 
         let self = this
         let config = self.config
 
         if (!self.howler) {
-            self.howler = new Howl({src: config.url, loop: config.loop, autoplay: false})
-            self.howler.volume(1);
+            self.howler = await new Howl({src: config.url, loop: config.loop, autoplay: false})
+            self.howler.volume(1)
             self.howler.play()
+
             if (config.inFade) {
                 self.fade(0, 1, config.inFade)
             }

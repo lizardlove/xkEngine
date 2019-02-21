@@ -140,7 +140,6 @@ export default class Control {
             switch (animate.type) {
 
                 case 'music': {
-
                     if (animate.status == 2 && animate.top < self.basePointTop) {
                         animate.play()
                     } else {
@@ -303,7 +302,6 @@ export default class Control {
             width = Math.round(Math.round((page.getAttribute('data-width') / winDpi) * 1000) / 1000);
             height = Math.round(Math.round((page.getAttribute('data-height') / winDpi) * 1000) / 1000);
             page.removeAttribute('data-top');
-            page.removeAttribute('data-width');
             page.removeAttribute('data-height');
 
             self.utils.setStyle(page, {'top': pageTop + 'px', 'width': width + 'px', 'height': height + 'px'});
@@ -315,7 +313,6 @@ export default class Control {
                 pageChildItem = pageChild[pageChildLen];
                 width = Math.round(Math.round((pageChildItem.getAttribute('data-width') / winDpi) * 1000) / 1000);
                 height = Math.round(Math.round((pageChildItem.getAttribute('data-height') / winDpi) * 1000) / 1000);
-                pageChildItem.removeAttribute('data-width');
                 pageChildItem.removeAttribute('data-height');
                 self.utils.setStyle(pageChildItem, {'width': width + 'px', 'height': height + 'px'});
             }
@@ -655,10 +652,10 @@ export default class Control {
                     list[i] = new Music(animate)
                     break
                 }
-            //     case 'animate': {
-            //         list[i] = new Animate(animate)
-            //         break
-            //     }
+                case 'animate': {
+                    list[i] = new Animate(animate)
+                    break
+                }
             //     case 'gif': {
             //         list[i] = new Gif(animate)
             //         break
