@@ -140,21 +140,21 @@ export default class Control {
             switch (animate.type) {
 
                 case 'music': {
-                    if (animate.status == 2 && animate.top < self.basePointTop) {
+                    if (animate.status == 2 && animate.top <= self.basePointTop) {
                         animate.play()
                     } else {
                         animate.stop()
                     }
                     break
                 }
-                // case 'animate': {
-                //     if (animate.status == 2 && animate.top < self.basePointTop) {
-                //         animate.play()
-                //     } else {
-                //         animate.stop()
-                //     }
-                //     break
-                // }
+                case 'animate': {
+                    if (animate.status == 2 && animate.top <= self.basePointTop) {
+                        animate.play(self.basePointTop)
+                    } else {
+                        animate.stop()
+                    }
+                    break
+                }
                 // case 'swing': {
                 //     if (animate.status == 2 && animate.top < self.basePointTop) {
                 //         animate.play()

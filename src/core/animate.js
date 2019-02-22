@@ -145,8 +145,85 @@ export default class Animate {
 
     }
 
-    play(top) {}
+    play(top) {
+        
+        let self = this
 
-    stop() {}
+        let heightRange, ele, core
+
+        heightRange = self.bottom - self.top
+        ele = self.ele
+        core = self.option
+
+        switch (core.type) {
+            case "animation": {
+                self._setStyle(ele, `${core.type}:${core.value};`)
+                break
+            }
+            case "opacity": {
+
+                let index, value, styleRange
+
+                index = top - self.top
+                value = index / heightRange
+                styleRange = core.value[1] - core.value[0]
+                value = Math.abs(value * styleRange)
+
+                if (styleRange < 0) {
+                    value = core.value[0] - value
+                } else {
+                    value = core.value[0] + value
+                }
+                value = value > 1 ? 1 : value
+
+                self._setStyle(ele, `${core.type}:${value};`)
+                break
+
+            }
+            case "transform": {
+                break
+            }
+        }
+
+    }
+
+    _setStyle(el, tf) {
+
+        let sty = '';
+
+        if (typeof tf === 'string') {
+            sty = tf;
+        } else if (typeof tf === 'object') {
+
+            for (var s in tf) {
+                sty += s + ':' + tf[s] + ';';
+            }
+
+        }
+
+        el.style.cssText += ';' + sty;
+
+    }
+
+    stop() {
+
+        let self = this
+
+        let ele
+        ele = self.ele
+
+        switch (self.option.type) {
+            case "animation": {
+                self._setStyle(ele, `${self.option.type}:none;`)
+                break
+            }
+            case "opacity": {
+                break
+            }
+            case "transform": {
+                break
+            }
+        }
+    }
 
 }
