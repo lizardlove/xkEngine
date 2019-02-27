@@ -54,6 +54,7 @@ export default class Animate {
 
         switch (self.option.type) {
             case "animation": {
+                self.bottom = self.top + parseFloat(self.ele.style.height)
                 break;
             }
             case "opacity": {
@@ -87,7 +88,13 @@ export default class Animate {
                     })
                 } else {
                     transformCore.forEach(core => {
-                        core.start = 0
+
+                        if (core.type == 'scale') {
+                            core.start = "1, 1"
+                        } else {
+                            core.start = 0
+                        }
+
                     })
                 }
 
@@ -97,9 +104,9 @@ export default class Animate {
                         let value = core.start.match(filter)
                         value.map(x => {
                             if (core.type == "translate3d") {
-                                return Math.round(Math.round((parseInt(x)/ winDpi) * 100) / 100)
+                                return Math.round(Math.round((parseFloat(x)/ winDpi) * 100) / 100)
                             } else {
-                                return parseInt(x)
+                                return parseFloat(x)
                             }
                         })
                         core.start = value
@@ -109,9 +116,9 @@ export default class Animate {
                         value = value.map(x => {
                             if (core.type == "translate3d") {
                                 
-                                return Math.round(Math.round((parseInt(x)/ winDpi) * 100) / 100)
+                                return Math.round(Math.round((parseFloat(x)/ winDpi) * 100) / 100)
                             } else {
-                                return parseInt(x)
+                                return parseFloat(x)
                             }
                         })
 
@@ -175,12 +182,52 @@ export default class Animate {
                     value = core.value[0] + value
                 }
                 value = value > 1 ? 1 : value
-
+                value = value < -1 ? -1 : value
                 self._setStyle(ele, `${core.type}:${value};`)
                 break
 
             }
             case "transform": {
+
+                let index, styleRange, str=`${core.type}:`
+                
+                index = top - self.top
+                index = index / heightRange
+                index = index > 1 ? 1 : index
+                index = index < -1 ? -1 : index
+                core.value.forEach(value => {
+                    str += `${value.type}(`
+                    if (value.start == 0) {
+                        styleRange = value.end
+                    } else {
+                        styleRange = []
+                        value.end.forEach((x,i) => {
+                            styleRange.push(x - value.start[i])
+                        })
+                    }
+
+                    styleRange.forEach(x => {
+                        switch (value.type) {
+                            case 'translate3d': {
+                                str += `${index*x}px,`
+                                break
+                            }
+                            case 'scale': {
+                                str += `${index*x + 1},`
+                                break;
+                            }
+                            case 'rotate': {
+                                str += `${(index*x) % 360}deg,`
+                                break;
+                            }
+                        }
+                    })
+                    str = str.slice(0, str.length - 1)
+                    str += `) `
+
+                })
+                str += `;`
+                self._setStyle(ele, str)
                 break
             }
         }

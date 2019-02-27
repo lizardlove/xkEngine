@@ -49,7 +49,7 @@ export default class Control {
 
        let animateBox = ele.firstElementChild || ele.children[0]                     //漫画大盒子
        let loadBox = animateBox.firstElementChild || animateBox.children[0]          //加载动画盒子
-       let animateContent =  animateBox.children[1]                                  //漫画内容盒子
+       let animateContent = loadBox.nextElementChild || animateBox.children[1]                                  //漫画内容盒子
    
        //let otherBox = animateContent.nextElementSibling || animateBox.children[2]  //其他内容盒子，页面菜单
 
@@ -85,12 +85,14 @@ export default class Control {
         
         //执行准备，初始化活动对象
         animateContent.style.height = animateContent.getAttribute('data-boxHeight') + 'px'
+        
         // setTimeout(function() {self.utils.window.scrollTo(0,1000)}, 10)
         self.pageActive = self._modify(self.pageArray, self.pageActive, self.utils.scrollTop())
 
         self.animateActive = self._modify(self.animates, self.animateActive, self.utils.scrollTop())
 
         self.resource.load(self.pageActive)
+        loadBox.style.display="none"
         self.play(self.utils.scrollTop())
 
         //绑定滑动事件
@@ -119,7 +121,7 @@ export default class Control {
      * @param {Number} top 滑动高度
      * @memberof Control
      */
-    play(top) {
+    async play(top) {
         
         let self = this
 
@@ -135,7 +137,7 @@ export default class Control {
 
         })
 
-        self.animateActive.forEach(index => {
+        await self.animateActive.forEach(index => {
             let animate = self.animates[index]
             switch (animate.type) {
 
