@@ -26,7 +26,12 @@ export default class Music {
         let config = self.config
 
         if (!self.howler) {
-            self.howler = await new Howl({src: config.url, loop: config.loop, autoplay: false})
+            self.howler = await new Howl({
+                src: config.url, 
+                loop: config.loop,
+                preload: true,
+                autoplay: false
+            })
             self.howler.volume(1)
             self.howler.play()
 

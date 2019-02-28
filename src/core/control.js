@@ -25,7 +25,7 @@ export default class Control {
         this.status = 0                                  //页面状态，3种取值0、1、2，0表示处于加载动画，1表示浏览模式，2表示触及底部，即结束
 
         this.oldPageActive = []
-        this.pageActive = []                           //处于屏幕可视区域的page列表
+        this.pageActive = []                             //处于屏幕可视区域的page列表
         
         this.animateActive = []                          //处于以当前屏幕为中心，往上两个可视屏幕，往下两个可视屏幕，此范围内的活动动画索引列表
         this.animates = []                               //动画列表，列表元素为实例化动画对象，其中包括音乐对象
@@ -34,7 +34,11 @@ export default class Control {
 
         this.utils = utils                               //浏览器相关属性及与动画无关的工具函数
 
-        this.scroll = new Scroll(utils)      //滑动控制器，主要用于滑动的控制，滑动相关参数的计算
+        this.scroll = new Scroll(utils)                  //滑动控制器，主要用于滑动的控制，滑动相关参数的计算
+
+        this.musicPlay = true                            //是否允许播放音乐
+        
+        this.domBox = {}                                 //存储上层DOM节点
 
         this.init(this.ele)
     }
@@ -49,22 +53,29 @@ export default class Control {
 
        let animateBox = ele.firstElementChild || ele.children[0]                     //漫画大盒子
        let loadBox = animateBox.firstElementChild || animateBox.children[0]          //加载动画盒子
-       let animateContent = loadBox.nextElementChild || animateBox.children[1]                                  //漫画内容盒子
+
+       self._playInitAnimation(loadBox)                                              //执行加载动画
+       let animateContent = loadBox.nextElementChild || animateBox.children[1]       //漫画内容盒子
    
-       //let otherBox = animateContent.nextElementSibling || animateBox.children[2]  //其他内容盒子，页面菜单
+       let otherBox = animateContent.nextElementSibling || animateBox.children[2]  //其他内容盒子，页面菜单             
 
-       //let otherBoxList = otherBox.querySelectorAll('.ot-page-img')                
+       let musicBtnBox = animateBox.nextElementSibling || ele.children[1]          //音乐按钮
 
-       //let musicBtnBox = animateBox.nextElementSibling || ele.children[1]          //音乐按钮
 
-       //self.otherItemBox.list = otherBoxList
-
-       //let loadBoxRect = self.utils.getStyleRect(loadBox)
-       //let loadHeight = loadBoxRect.height
+    //    let loadBoxRect = self.utils.getStyleRect(loadBox)
+    //    let loadHeight = loadBoxRect.height
 
        self.basePoint = animateBox.getAttribute('data-screen')                      //页面基准触发点
        self.basePointTop = self.scroll.top + self.basePoint * self.utils.height
        animateBox.removeAttribute('data-screen')
+
+       self.domBox = {
+           animate: animateBox,
+           load: loadBox,
+           content: animateContent,
+           other: otherBox,
+           music: musicBtnBox
+       }
 
        //self.options.animalBox = animalBox;                         // 全局存储大盒子
        //self.options.animalDtBoxWidth = animalBox.offsetWidth;
@@ -74,7 +85,7 @@ export default class Control {
        //loadBox.style.zIndex = 0;							// 把loading效果降级
 
        //获取漫画内容 页面列表
-        self.pageArray = animateContent.children || self.utils.getChildList(animateContent)  
+        self.pageArray = animateContent.children || self.utils.getChildList(animateContent)
 
         self._computePanel(animateContent)       //初始化漫画页面绝对高度计算
 
@@ -82,17 +93,50 @@ export default class Control {
 
         self._computeAnimates(self.animates)     //计算动画的触发高度和结束高度，并实例化各类动画
 
+        self.prePlay()                           //页面状态调整，初始资源加载
         
-        //执行准备，初始化活动对象
-        animateContent.style.height = animateContent.getAttribute('data-boxHeight') + 'px'
-        
-        // setTimeout(function() {self.utils.window.scrollTo(0,1000)}, 10)
+
+    }
+    _playInitAnimation(load) {
+
+        let self = this
+
+        let loadEl = '<img class="xk-load-anim" src="//ac.gtimg.com/h5_hd/MotionComic/public/loading.gif"><p class="xk-load-txt">漫画绘制中...</p>'
+        load.innerHTML = load.innerText = loadEl
+        let txtInfo = document.querySelector('.xk-load-txt')
+        let infoList = ['动效生成中...','音效生成中... ']
+        let index = 0
+
+        setTimeout(function () {
+            txtInfo.innerHTML = infoList[index]
+            index = (index++) % 2
+            setTimeout(function () {
+                txtInfo.innerHTML = infoList[index]
+                index = (index++) % 2
+            }, Math.random()*2000)
+        }, Math.random()*2000)
+
+
+    }
+    prePlay() {
+
+        let self = this
+
+        //音乐按钮设置
+
+        let events = self.utils.addEvent
+        let container = self.ele
+
+
+        //初始化活动对象
+        self.domBox.content.style.height = self.domBox.content.getAttribute('data-boxHeight') + 'px'
+
         self.pageActive = self._modify(self.pageArray, self.pageActive, self.utils.scrollTop())
 
         self.animateActive = self._modify(self.animates, self.animateActive, self.utils.scrollTop())
 
         self.resource.load(self.pageActive)
-        loadBox.style.display="none"
+        self.domBox.load.style.display="none"
         self.play(self.utils.scrollTop())
 
         //绑定滑动事件
@@ -112,7 +156,6 @@ export default class Control {
             self.play(top)                                                            //执行动画
             
         })
-
     }
 
     /**
@@ -142,7 +185,7 @@ export default class Control {
             switch (animate.type) {
 
                 case 'music': {
-                    if (animate.status == 2 && animate.top <= self.basePointTop) {
+                    if (animate.status == 2 && animate.top <= self.basePointTop && self.domBox.music.bool) {
                         animate.play()
                     } else {
                         animate.stop()

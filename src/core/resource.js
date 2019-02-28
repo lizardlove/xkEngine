@@ -103,6 +103,7 @@ export default class Resource {
         let howl = new Howl({
             src: src,
             loop: false,
+            preload: true,
             onload: callback
         })
 
