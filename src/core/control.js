@@ -54,16 +54,12 @@ export default class Control {
        let animateBox = ele.firstElementChild || ele.children[0]                     //漫画大盒子
        let loadBox = animateBox.firstElementChild || animateBox.children[0]          //加载动画盒子
 
-       self._playInitAnimation(loadBox)                                              //执行加载动画
+       self._loadAnimation(loadBox)                                              //执行加载动画
        let animateContent = loadBox.nextElementChild || animateBox.children[1]       //漫画内容盒子
    
        let otherBox = animateContent.nextElementSibling || animateBox.children[2]  //其他内容盒子，页面菜单             
 
        let musicBtnBox = animateBox.nextElementSibling || ele.children[1]          //音乐按钮
-
-
-    //    let loadBoxRect = self.utils.getStyleRect(loadBox)
-    //    let loadHeight = loadBoxRect.height
 
        self.basePoint = animateBox.getAttribute('data-screen')                      //页面基准触发点
        self.basePointTop = self.scroll.top + self.basePoint * self.utils.height
@@ -76,13 +72,6 @@ export default class Control {
            other: otherBox,
            music: musicBtnBox
        }
-
-       //self.options.animalBox = animalBox;                         // 全局存储大盒子
-       //self.options.animalDtBoxWidth = animalBox.offsetWidth;
-       //self.options.initBackgourund = animalBox.style.background;
-
-       //musicBtnBox.style.opacity = 0;						// 音乐按钮先隐藏
-       //loadBox.style.zIndex = 0;							// 把loading效果降级
 
        //获取漫画内容 页面列表
         self.pageArray = animateContent.children || self.utils.getChildList(animateContent)
@@ -97,36 +86,16 @@ export default class Control {
         
 
     }
-    _playInitAnimation(load) {
 
-        let self = this
-
-        let loadEl = '<img class="xk-load-anim" src="//ac.gtimg.com/h5_hd/MotionComic/public/loading.gif"><p class="xk-load-txt">漫画绘制中...</p>'
-        load.innerHTML = load.innerText = loadEl
-        let txtInfo = document.querySelector('.xk-load-txt')
-        let infoList = ['动效生成中...','音效生成中... ']
-        let index = 0
-
-        setTimeout(function () {
-            txtInfo.innerHTML = infoList[index]
-            index = (index++) % 2
-            setTimeout(function () {
-                txtInfo.innerHTML = infoList[index]
-                index = (index++) % 2
-            }, Math.random()*2000)
-        }, Math.random()*2000)
-
-
-    }
     prePlay() {
 
         let self = this
 
         //音乐按钮设置
+        self._musicBtnControl(self.domBox.music)
 
-        let events = self.utils.addEvent
-        let container = self.ele
-
+        //菜单按钮设置
+        self._menuControl()
 
         //初始化活动对象
         self.domBox.content.style.height = self.domBox.content.getAttribute('data-boxHeight') + 'px'
@@ -252,6 +221,296 @@ export default class Control {
             }
         }
     }
+    
+    _loadAnimation(load) {
+
+        let self = this
+
+        let loadEl = '<img class="xk-load-anim" src="//ac.gtimg.com/h5_hd/MotionComic/public/loading.gif"><p class="xk-load-txt">漫画绘制中...</p>'
+        load.innerHTML = load.innerText = loadEl
+        let txtInfo = document.querySelector('.xk-load-txt')
+        let infoList = ['动效生成中...','音效生成中... ']
+        let index = 0
+
+        setTimeout(function () {
+            txtInfo.innerHTML = infoList[index]
+            index = (index++) % 2
+            setTimeout(function () {
+                txtInfo.innerHTML = infoList[index]
+                index = (index++) % 2
+            }, Math.random()*2000)
+        }, Math.random()*2000)
+
+
+    }
+
+    _musicBtnControl(music) {
+        let self = this
+
+        let utils, btn, onBtn, offBtn, startX = 0, startY = 0
+
+        utils = self.utils
+        btn = music
+        onBtn = music.querySelector('#music_box_on')
+        offBtn = music.querySelector('#music_box_off')
+
+        if (btn) {
+            
+            utils.addClass(onBtn, 'music_display')
+            utils.addClass(offBtn, 'music_display')
+
+            if (!utils.browser.versions.mobile) {
+                self.domBox.music.bool = false
+            } else {
+                self.domBox.music.bool = true
+            }
+
+            display(self.domBox.music.bool)
+            musicEvents(true)
+        }
+
+
+
+        function display(bool) {
+            
+            if (bool) {
+                utils.removeClass(onBtn, 'music_hidden')
+                utils.addClass(offBtn, 'music_hidden')
+            } else {
+                utils.addClass(onBtn, 'music_hidden')
+                utils.removeClass(offBtn, 'music_hidden')
+            }
+
+        }
+
+        function musicEvents(remove, callback) {
+            let events = remove ? utils.addEvent : utils.removeEvent
+
+            if (utils.hasTouch) {
+                events(btn, 'touchstart', start, true)
+                events(btn, 'touchmove', move, true)
+                events(btn, 'touchend', end, true)
+            } else if (utils.hasPointer) {
+                events(btn, utils.prefixPointerEvent('pointerdown'), start, true)
+                events(btn, utils.prefixPointerEvent('pointermove'), move, true)
+                events(btn, utils.prefixPointerEvent('pointerup'), end, true)
+            } else {
+                events(btn, 'mousedown', start, true)
+                events(btn, 'mousemove', move, true)
+                events(btn, 'mouseup', end, true)
+            }
+
+            function start(e) {
+                let touch = e.touches ? e.touches[0] : e
+                e.stopPropagation()
+                startX = touch.pageX
+                startY = touch.pageY
+            }
+
+            function move(e) {
+                let touch = e.touches ? e.touches[0] : e
+
+                e.stopPropagation()
+                startX = touch.pageX
+                startY = touch.pageY
+            }
+
+            function end(e) {
+                let touch, endX, endY
+
+                touch = e.changedTouches ? e.changedTouches[0] : e
+                endX = touch.pageX
+                endY = touch.pageY
+
+                if ( Math.abs(startX - endX) < 8 || Math.abs(startY - endY) < 8 ) {
+                    if (self.domBox.music.bool) {
+                        self.domBox.music.bool = false
+                        display(false)
+                        changePlayState(false)
+                    } else {
+                        self.domBox.music.bool = true
+                        display(true)
+                        changePlayState(true)
+                    }
+                }
+            }
+        }
+
+        function changePlayState(bool) {
+
+            self.animateActive.forEach(index => {
+
+                let animate = self.animates[index]
+
+                if (animate.type == 'music') {
+                    if (!bool) {
+                        animate.pause()
+                    } else {
+                        animate.play()
+                    }
+                    
+                }
+            })
+        }
+    }
+
+    _menuControl() {
+        
+        let self = this
+
+        let utils, container, events, topTool, bottomTool, cancelInfo, startX, startY, startTime, endTime, isMove, scrollTop, menu
+
+        utils = self.utils
+        container = self.ele
+        events = utils.addEvent
+        menu = utils.document.createElement('div')
+        topTool = utils.document.createElement('div')
+        bottomTool = utils.document.createElement('div')
+        cancelInfo = utils.document.createElement('div')
+
+        topTool.innerHTML = '<a id="dtw-tool-back" class="xk-float-btn-style xk-float-btn-back"><i>返回</i></a><a id="xk-love" class="xk-love"></a>'
+		bottomTool.innerHTML = '<a id="dtw-tool-pre" class="xk-bttom-btn-style xkw-bttom-pre"><i>上一话</i></a><a id="dtw-tool-home" class="xk-bttom-btn-style xk-bttom-list">目录</a><a id="dtw-tool-next" class="xk-bttom-btn-style xk-bttom-next"> <i>下一话</i></a>'
+        cancelInfo.innerHTML ='<img class="xk-info-bg" src="//ac.gtimg.com/h5_hd/MotionComic/public/xk-alert-bg.png"><img class="xk-info-anim" src="//ac.gtimg.com/h5_hd/MotionComic/public/xk-alert-anim.png"><img class="xk-info-subscribe xk-info-select" src="//ac.gtimg.com/h5_hd/MotionComic/public/xk-alert-subscribe.png"><img class="xk-info-unsubscribe xk-info-select" src="//ac.gtimg.com/h5_hd/MotionComic/public/xk-alert-unsubscribe.png">'
+        
+        menu.appendChild(topTool)
+		menu.appendChild(bottomTool)
+		utils.addClass(cancelInfo,'xk-infoPanel')
+		utils.addClass(topTool,'xk-float-bar xk-top xk-hidden')
+		utils.addClass(bottomTool,'xkw-bottom-menu xk-bottom-hidden')
+		utils.document.querySelector('body').appendChild(menu)
+        utils.document.querySelector('body').appendChild(cancelInfo)
+        
+        if(topTool || bottomTool){
+            if(utils.hasTouch){
+                events(container, 'touchstart', start)
+                events(container, 'touchmove', move)
+                events(container, 'touchend', end)
+            }else if(utils.hasPointer){
+                events(container, utils.prefixPointerEvent('pointerdown'), start)
+                events(container, utils.prefixPointerEvent('pointermove'), move)
+                events(container, utils.prefixPointerEvent('pointerup'), end)
+            }else {
+                events(container, 'mousedown', start)
+                events(container, 'mousemove', move)
+                events(container, 'mouseup', end)
+			}
+        }
+
+        postInfo()
+        
+		function start(e) {
+            let touch = e.touches ? e.touches[0] : e
+
+            e.stopPropagation()
+            startX = touch.pageX
+            startY = touch.pageY
+            startTime = utils.getTime()
+            scrollTop = utils.scrollTop()
+            isMove = false
+        }
+
+		function move(e) {
+            let newScrollTop = utils.scrollTop()
+
+            e.stopPropagation()
+            if( newScrollTop == scrollTop ){
+            	isMove = false
+            	return
+            }
+            if(!utils.hasClass(topTool,'xk-hidden')){
+                utils.addClass(topTool,'xk-hidden')
+            }
+            isMove = true
+            scrollTop = newScrollTop
+        }
+
+        function end(e) {
+            let touch = e.changedTouches ? e.changedTouches[0] : e
+            let endObj = {
+                _x: Math.abs(touch.pageX -startX),
+                _y: Math.abs(touch.pageY -startY),
+                _time: utils.getTime() - startTime,
+            }
+
+            e.stopPropagation()
+            if( endObj._time <= 300 && endObj._x <= 30 && endObj._y <= 30 && !isMove ){
+                if(utils.hasClass(topTool,'xk-hidden')){
+                    utils.removeClass(topTool,'xk-hidden')
+                    endTime = utils.getTime()
+                    display()
+				}else{
+                    utils.addClass(topTool,'xk-hidden')
+				}
+
+                if(utils.hasClass(bottomTool,'xk-bottom-hidden')){
+                    utils.removeClass(bottomTool,'xk-bottom-hidden')
+                    endTime = utils.getTime()
+                    display()
+                }else{
+                    utils.addClass(bottomTool,'xk-bottom-hidden')
+                }
+
+			}
+        }
+
+        function display() {
+            let newTimer = utils.getTime()
+
+            if (endTime == null && (topTool || bottomTool)) return 
+            if (newTimer - endTime > 2500) {
+                newTimer = null
+                endTime = null
+                utils.addClass(topTool, 'xk-hidden')
+                utils.addClass(bottomTool, 'xk-bottom-hidden')
+                return
+            }
+
+            utils.requestAnimationFrame(display)
+
+        }
+
+        function postInfo() {
+            let xhr, t, chapter, comic
+
+            xhr = new XMLHttpRequest
+            t = window.location.href.split("/")
+            chapter = +t[t.length - 1].split(".")[0]
+            comic = t[t.length - 2]
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    let data, pre, next, back, home
+
+                    data = JSON.parse(xhr.responseText).data
+                    pre = utils.document.querySelector('#dtw-tool-pre')
+                    next = utils.document.querySelector('#dtw-tool-next')
+                    back = utils.document.querySelector('#dtw-tool-back')
+                    home = utils.document.querySelector('#dtw-tool-home')
+
+                    back.href = `/event/MotionComic/detail.shtml?comic=${comic}`
+                    home.href = `/event/MotionComic/detail.shtml?comic=${comic}`
+                    
+                    if (chapter - 1 < 1) {
+                        pre.style = "visibility: hidden"
+                    } else {
+                        pre.href = `/event/MotionComic/${comic}/${chapter - 1}.html`
+                    }
+
+                    if (chapter + 1 > data.length) {
+                        next.style = "visibility: hidden"
+                    } else {
+                        next.href = `/event/MotionComic/${comic}/${chapter + 1}.html`
+                    }
+                }
+            }
+
+            xhr.open('GET', `../action.php?action=chapter&comic=${comic}`, true)
+            xhr.send()
+
+        }
+
+    }
+
 
     /**
      * 通过滑动高度更新活动集合，处于活动范围内的对象标记位活动对象

@@ -32,15 +32,27 @@ export default class Music {
                 preload: true,
                 autoplay: false
             })
+            self.howler.paused = false
             self.howler.volume(1)
             self.howler.play()
-
             if (config.inFade) {
-                self.fade(0, 1, config.inFade)
+                self.howler.fade(0, 1, config.inFade)
             }
+        } else if (self.howler.paused) {
+            self.howler.play()
+            self.howler.paused = false
         }
 
 
+    }
+
+    pause() {
+        let self = this
+
+        if (self.howler && !self.howler.paused) {
+            self.howler.pause()
+            self.howler.paused = true
+        }
     }
 
     stop(){
