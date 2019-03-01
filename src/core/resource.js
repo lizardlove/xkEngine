@@ -16,7 +16,6 @@ export default class Resource {
     load(index) {
 
         let self = this
-
         if (Array.isArray(index)) {   
             index.forEach( x => {
                 self.load(x)
@@ -51,6 +50,8 @@ export default class Resource {
                 } )
             }
         }
+        
+
     }
 
     /**

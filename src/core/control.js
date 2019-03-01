@@ -40,6 +40,7 @@ export default class Control {
         
         this.domBox = {}                                 //存储上层DOM节点
 
+        this._loadAnimation(utils.document.querySelector('#dt-loadBox'))
         this.init(this.ele)
     }
 
@@ -54,7 +55,7 @@ export default class Control {
        let animateBox = ele.firstElementChild || ele.children[0]                     //漫画大盒子
        let loadBox = animateBox.firstElementChild || animateBox.children[0]          //加载动画盒子
 
-       self._loadAnimation(loadBox)                                              //执行加载动画
+       //self._loadAnimation(loadBox)                                                  //执行加载动画
        let animateContent = loadBox.nextElementChild || animateBox.children[1]       //漫画内容盒子
    
        let otherBox = animateContent.nextElementSibling || animateBox.children[2]  //其他内容盒子，页面菜单             
@@ -109,8 +110,19 @@ export default class Control {
         self.animateActive = self._modify(self.animates, self.animateActive, self.utils.scrollTop())
 
         self.resource.load(self.pageActive)
-        self.domBox.load.style.display="none"
-        self.play(self.utils.scrollTop())
+        
+        setTimeout(function () {
+            
+            self.domBox.load.style.display="none"
+            self.play(self.utils.scrollTop())
+            // let box = []
+            // self.resource.box.forEach((x,i) => {
+            //     box.push(i)
+            // })
+            // self.resource.load(box)
+            console.log('ok')
+        }, 1000)
+        //self.play(self.utils.scrollTop())
 
         //绑定滑动事件
         self.scroll.initEvent(false, function (top) {
@@ -554,7 +566,7 @@ export default class Control {
         startPre = startPre < 0 ? 0 : startPre
 
         endIn = top + screenHeight
-        endPre = top + screenHeight * 2
+        endPre = top + screenHeight * 4
 
         active.forEach(index => {
             rect = self.utils.isDom(objects[index]) ? self.utils.getStyleRect(objects[index]) : objects[index]
