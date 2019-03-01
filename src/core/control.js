@@ -86,7 +86,11 @@ export default class Control {
         
 
     }
-
+    /**
+     *对页面各组件进行状态配置
+     *
+     * @memberof Control
+     */
     prePlay() {
 
         let self = this
@@ -222,6 +226,12 @@ export default class Control {
         }
     }
     
+    /**
+     *加载屏动画设置
+     *
+     * @param {Object} load DOM元素，用于加载动画的显示
+     * @memberof Control
+     */
     _loadAnimation(load) {
 
         let self = this
@@ -244,6 +254,12 @@ export default class Control {
 
     }
 
+    /**
+     *页面右上角音乐按钮的控制
+     *
+     * @param {Object} music 音乐按钮DOM
+     * @memberof Control
+     */
     _musicBtnControl(music) {
         let self = this
 
@@ -354,6 +370,11 @@ export default class Control {
         }
     }
 
+    /**
+     *页面控制菜单
+     *
+     * @memberof Control
+     */
     _menuControl() {
         
         let self = this
@@ -453,6 +474,7 @@ export default class Control {
 			}
         }
 
+        //菜单栏的显隐控制
         function display() {
             let newTimer = utils.getTime()
 
@@ -468,6 +490,7 @@ export default class Control {
             utils.requestAnimationFrame(display)
 
         }
+
 
         function postInfo() {
             let xhr, t, chapter, comic

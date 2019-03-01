@@ -20,6 +20,11 @@ export default class Music {
         this.howler = null
     }
 
+    /**
+     *howler对象初始化并播放
+     *
+     * @memberof Music
+     */
     async play(){
 
         let self = this
@@ -32,7 +37,7 @@ export default class Music {
                 preload: true,
                 autoplay: false
             })
-            self.howler.paused = false
+            self.howler.paused = false                  //howler没有附带paused信息，手动添加
             self.howler.volume(1)
             self.howler.play()
             if (config.inFade) {

@@ -10,16 +10,6 @@
           <link href="css/xk_menu.css" rel="stylesheet">
           <link href="css/xk_musicBtn.css" rel="stylesheet">
           <script src="adapt.js"></script>
-          <!-- <script src="js/xk_utils.js"></script>
-          <script src="js/xk_load.js"></script>
-          <script>
-              var xkLoadBox = new XkLoadBox('dt-loadBox');
-          </script>
-          
-          <script src="js/howler.js"></script>
-          <script src="js/xk_musicBtn.js"></script>
-          <script src="js/xk_animal.js"></script>
-          <script src="js/xk_menu.js"></script> -->
     <style>
         @-webkit-keyframes f07 {
             0% {
@@ -673,18 +663,10 @@
 
 </div>
 <script src="main.js"></script>
-<!-- <script>
-    var dtMenu = new DtMenu('dt-scrollor');
-    var dtAnimal = new XkAnimal({
-        type: 1,
-        data: 'dt-scrollor',
-        play: '',
-        background: 'black'
-    });
-    var dtMusicBtn = new DtMusicBtn('musicBtn', dtAnimal);
-</script> -->
-
-
-
+<script>
+    let xkAnimate = new Control({
+        ele: "#dt-scrollor"
+    })
+</script>
 
 </body></html>

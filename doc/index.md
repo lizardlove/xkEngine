@@ -86,8 +86,12 @@
 | resource      | Object   | 资源控制器，主要用于资源的控制和预加载             |
 | scroll        | Object   | 滑动控制器，主要用于滑动的控制，滑动相关参数的计算 |
 | utils         | Object   | 工具函数库                                         |
-| init          | Function | 解析DOM，动画配置，资源并分类，计算绝对定位        |
+| domBox        | Object   | 存储页面控制组DOM                                  |
+| init          | Function | 解析动画配置，资源并分类，计算绝对定位             |
 | play          | Function | 接收滑动高度，执行动画                             |
+| prePlay       | Function | 对页面各组件进行状态配置                           |
+
+
 
 ### Scroll
 
@@ -170,25 +174,35 @@
 
 > 音乐对象的封装
 
-| 属性   | 类型     | 说明                  |
-| ------ | -------- | --------------------- |
-| id     | Number   | 全局动画id            |
-| ele    | Object   | 所属的DOM对象         |
-| status | Number   | 0 静止，1 准备，2播放 |
-| top    | Number   | 全局绝对高度，起点    |
-| bottom | Number   | 全局绝对高度，终点    |
-| config | Object   | 播放相关配置          |
-| howler | Object   | howler音乐对象        |
-| play   | Function | 播放音乐              |
-| stop   | Function | 暂停并注销howler对象  |
+| 属性   | 类型     | 说明                     |
+| ------ | -------- | ------------------------ |
+| id     | Number   | 全局动画标识             |
+| ele    | Object   | 所属的DOM对象            |
+| status | Number   | 0 静止，1 准备，2播放    |
+| top    | Number   | 全局绝对高度，起点       |
+| bottom | Number   | 全局绝对高度，终点       |
+| config | Object   | 播放相关配置             |
+| howler | Object   | howler音乐对象           |
+| play   | Function | 播放音乐                 |
+| stop   | Function | 停止播放并注销howler对象 |
+| pause  | Function | 暂停播放                 |
 
 #### Animate
 
 > CSS 3动画的封装
 
-| 属性 | 类型 | 说明 |
-| ---- | ---- | ---- |
-|      |      |      |
+| 属性      | 类型     | 说明                                        |
+| --------- | -------- | ------------------------------------------- |
+| id        | Number   | 全局动画标识                                |
+| ele       | Object   | 所属的DOM                                   |
+| status    | Number   | 0 静止，1 准备，2播放                       |
+| top       | Number   | 全局绝对高度，起点                          |
+| bottom    | Number   | 全局绝对高度，终点                          |
+| type      | String   | 动画类型                                    |
+| option    | Object   | 标识CSS3动画，animation, opacity, transform |
+| _format   | Function | CSS3动画参数格式化                          |
+| play(top) | Function | 根据传入高度，执行动画                      |
+| stop      | Function | 取消动画执行                                |
 
 #### Gif
 

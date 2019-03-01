@@ -9,6 +9,7 @@ export default class Animate {
         this.type = config.type
         this.option = {}
         
+        //采集不同的CSS3动画并归类
         if (config.config.animation) {
             this.option = {
                 type: "animation",
@@ -30,6 +31,11 @@ export default class Animate {
 
     }
 
+    /**
+     *针对CSS3动画播放相关参数进行页面适配及参数初始化
+     *
+     * @memberof Animate
+     */
     _format() {
        
         let self = this
@@ -39,6 +45,8 @@ export default class Animate {
         let computedStyle = window.getComputedStyle(self.ele)
         let numReg = new RegExp("[\-\.0-9]+", "gmi")
         let winDpi = Math.round((self.ele.getAttribute('data-width') / self.ele.offsetWidth) * 1000) / 1000
+
+        //动画相关的位移原始量 页面适配
         if (style.top && style.top.indexOf('px') != -1) {
             style.top = Math.round(Math.round((style.top.match(numReg) / winDpi) * 100) / 100) + 'px'
         }
@@ -52,6 +60,7 @@ export default class Animate {
             style.right = Math.round(Math.round((style.right.match(numReg) / winDpi) * 100) / 100) + 'px'
         }
 
+        //采集动画初始和结束参数
         switch (self.option.type) {
             case "animation": {
                 self.bottom = self.top + parseFloat(self.ele.style.height)
@@ -152,6 +161,12 @@ export default class Animate {
 
     }
 
+    /**
+     *根据传入Top, 计算当前动画的状态，并赋值CSS
+     *
+     * @param {Number} top 实时的滑动高度
+     * @memberof Animate
+     */
     play(top) {
         
         let self = this
@@ -234,6 +249,13 @@ export default class Animate {
 
     }
 
+    /**
+     *添加/更新CSS信息
+     *
+     * @param {Object} el 需要更新CSS的DOM
+     * @param {String} tf CSS文本
+     * @memberof Animate
+     */
     _setStyle(el, tf) {
 
         let sty = '';
@@ -252,6 +274,11 @@ export default class Animate {
 
     }
 
+    /**
+     *结束动画状态，还原状态
+     *
+     * @memberof Animate
+     */
     stop() {
 
         let self = this
