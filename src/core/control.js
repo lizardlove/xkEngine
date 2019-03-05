@@ -123,8 +123,10 @@ export default class Control {
             }
             
         }
-        
-        self.utils.requestAnimationFrame(judge)
+        setTimeout(function () {
+            self.utils.requestAnimationFrame(judge)
+        }, 500)
+        //self.utils.requestAnimationFrame(judge)
 
         //绑定滑动事件
         self.scroll.initEvent(false, function (top) {
@@ -280,12 +282,12 @@ export default class Control {
         let utils, btn, onBtn, offBtn, startX = 0, startY = 0
 
         utils = self.utils
-        btn = music
+        btn = self.domBox.music
         onBtn = music.querySelector('#music_box_on')
         offBtn = music.querySelector('#music_box_off')
 
         if (btn) {
-            
+            console.log(btn)
             utils.addClass(onBtn, 'music_display')
             utils.addClass(offBtn, 'music_display')
 
@@ -294,7 +296,6 @@ export default class Control {
             } else {
                 self.domBox.music.bool = true
             }
-
             display(self.domBox.music.bool)
             musicEvents(true)
         }
@@ -302,7 +303,7 @@ export default class Control {
 
 
         function display(bool) {
-            
+        
             if (bool) {
                 utils.removeClass(onBtn, 'music_hidden')
                 utils.addClass(offBtn, 'music_hidden')
@@ -331,6 +332,7 @@ export default class Control {
             }
 
             function start(e) {
+                console.log('start')
                 let touch = e.touches ? e.touches[0] : e
                 e.stopPropagation()
                 startX = touch.pageX
@@ -338,6 +340,7 @@ export default class Control {
             }
 
             function move(e) {
+                console.log('move')
                 let touch = e.touches ? e.touches[0] : e
 
                 e.stopPropagation()
@@ -352,6 +355,8 @@ export default class Control {
                 endX = touch.pageX
                 endY = touch.pageY
 
+                e.stopPropagation()
+                console.log("music")
                 if ( Math.abs(startX - endX) < 8 || Math.abs(startY - endY) < 8 ) {
                     if (self.domBox.music.bool) {
                         self.domBox.music.bool = false
@@ -728,7 +733,7 @@ export default class Control {
 
             srcCore = {
                 type: "",
-                loaded: false,
+                loaded: 0,
                 src: ""
             }
             
@@ -780,7 +785,7 @@ export default class Control {
             if (src) {
                 pageResource.list.push({
                     type: "image",
-                    loaded: false,
+                    loaded: 0,
                     src: src
                 })
 
