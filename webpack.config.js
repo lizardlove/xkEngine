@@ -3,6 +3,7 @@ const path = require('path')
 const port = require("./config.json").port
 
 module.exports = {
+    mode: 'development',
     entry: {
         main: [
             `webpack-hot-middleware/client?path=http://localhost:${port}/__webpack_hmr&reload=true`,

@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 const cleanWebpackPlugin = require('clean-webpack-plugin')
 module.exports = {
+    mode: 'production',
     entry: {
         main: path.resolve(__dirname, './src/core/app.js')
     },

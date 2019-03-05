@@ -96,6 +96,8 @@ export default class Control {
 
         let self = this
 
+        let flag
+
         //音乐按钮设置
         self._musicBtnControl(self.domBox.music)
 
@@ -109,20 +111,20 @@ export default class Control {
 
         self.animateActive = self._modify(self.animates, self.animateActive, self.utils.scrollTop())
 
-        self.resource.load(self.pageActive)
-        
-        setTimeout(function () {
+        flag = self.resource.load(self.pageActive)
+
+        function judge() {
+            if (flag) {
+                self.domBox.load.style.display = "none"
+                self.play(self.utils.scrollTop())
+                console.log('ok')
+            } else {
+                self.utils.requestAnimationFrame(judge)
+            }
             
-            self.domBox.load.style.display="none"
-            self.play(self.utils.scrollTop())
-            // let box = []
-            // self.resource.box.forEach((x,i) => {
-            //     box.push(i)
-            // })
-            // self.resource.load(box)
-            console.log('ok')
-        }, 1000)
-        //self.play(self.utils.scrollTop())
+        }
+        
+        self.utils.requestAnimationFrame(judge)
 
         //绑定滑动事件
         self.scroll.initEvent(false, function (top) {
