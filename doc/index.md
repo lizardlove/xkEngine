@@ -24,6 +24,8 @@
 
 ## 动画配置参数
 
+动效配置以`data-*` 属性添加到页面`DOM`节点，有`data-bgm`和`data-animal`两类。漫画按页划分，以`.page`标识，内部有多个`img`标签相互堆叠，由下至上，分别为背景层，动效层，蒙层。
+
 ### data-screen
 
 > 全局唯一，绑定在顶层DOM(#dt-scrollor)，动画触发基准点
@@ -32,31 +34,167 @@
 
 ### data-bgm
 
-> 页面bgm配置，可跨多个页面播放同一bgm
+> 只能绑定在`.page`标签上，可跨多页持续播放，id为序列化后自动添加，不用配置
 
-| 键       | 类型                       | 说明                               |
-| -------- | -------------------------- | ---------------------------------- |
-| loop     | Boolean                    | 在规定范围内是否                   |
-| url      | Array [String]             | 存储音乐地址                       |
-| newTeam  | Array [startPage, endPage] | 只要两个值的数组                   |
-| infade   | Number                     | 淡入时间，毫秒级                   |
-| outfade  | Number                     | 淡出时间，毫秒级                   |
-| startTop | Number [0, 1]              | 播放开始点，对应起点page高度百分比 |
-| endTop   | Number [0, 1]              | 停止结束点，对应结束page高度百分比 |
+##### 实例
+
+```
+data-bgm="{'item':{'loop':false,'newTeam':[0,1],'oldTeam':[0,1],'start':true,'outfade':2000,'startTop':0.1,'url':['songs/01-gqzhp5-hong.mp3'],'id':'xk3618610'}}"
+```
+
+##### loop
+
+播放完毕后是否重复播放
+
++ true / false
+
+##### url
+
+音乐链接的相对地址
+
++ [url1, url2..]  
+
+##### newTeam
+
+`bgm`播放范围, 0表示本页，endIndex表示从本页开始，连续播放多少页。
+
++ [0, endIndex]
+
+##### infade
+
+音量淡入时间
+
++ Number  不限，单位`ms`
+
+##### outfade
+
+音量淡出时间
+
++ Number 不限，单位`ms`
+
+##### startTop
+
+相对起点页面顶部延迟一定距离播放
+
++ Number 取值范围[0, 1]
+
+##### endTop
+
+相对结束页面顶部延迟一定距离结束
+
++ Number 取值范围[0, 1]
+
+##### start
+
+标识是否为起点页
+
++ true / false
 
 ### data-animal
 
+> 绑定在所属动画层次上(`.page`下`img`元素)
+>
 > 动画配置，严格按照一个动画一条item配置，同一元素不能配置互斥的动画
 
 #### 必要
 
-| 键    | 类型   | 说明                                                         |
-| ----- | ------ | ------------------------------------------------------------ |
-| type  | Number | 定义动画起始高度，0：绑定page的top; 1：绑定元素的top；2：同一元素的上一个动画的top；3：同一元素的上一个动画的bottom |
-| delay | Number | 0 1 2 3 4 5, 六种固定延迟模式，可选[0, 100]，自定义延迟百分比，基准为可视屏幕高度 |
-| speed | Number | 0 1 2 3 4，五种固定模式，可选[0,100]，自定义百分比，基准为可视屏幕高度 |
+##### type
+
+控制播放参照物，初始高度
+
++ 0  所属`.page`的顶部高度
++ 1  所属`img`元素的顶部高度
++ 2  所属`img`元素若有多条动效，跟随上一条配置同时运行，否则同0
++ 3  所属`img`元素若有多条动效，在上一条配置结束后运行，否则同0
+
+##### delay
+
+以可视屏幕高度为基准，延迟一定距离播放
+
++ 0  不延迟，按初始高度播放
+
++ 1 延迟0.05个屏幕高度距离
+
++ 2  延迟0.1个屏幕高度距离
+
++ 3  延迟0.2个屏幕高度距离
+
++ 4  延迟0.35个屏幕高度距离
+
++ 5  延迟0.6个屏幕高度距离
+
++ default  自定义延迟距离
+
+  ```
+  start = start + screenHeight * (config.delay / 100)
+  ```
+
+##### speed
+
+以可视屏幕高度为基准，确定播放长度和结束位置
+
++ 0  播放长度为1个屏幕
+
++ 1  播放长度为0.8个屏幕
+
++ 2  播放长度为0.6个屏幕
+
++ 3  播放长度为0.4个屏幕
+
++ 4  播放长度为0.2个屏幕
+
++ default  自定义播放长度
+
+  ```
+  end = start + screenHeight * (config.speed/100)
+  ```
 
 #### 可选动画类型
+
+##### music
+
+```
+{'item':{'type':2,'speed':40,'delay':5,'music':{'url':['songs/02-gqzhp5-flash.mp3'],'outfade':2000, 'loop': false}}}
+```
+
++ url  音乐链接
++ infade  音量淡入时间
++ outfade  音量淡出时间
++ loop  播放结束后是否重新播放
+
+##### transform
+
+`css` 的`transform`的结束状态，`css`格式
+
+```
+{'item': {'type': 1, 'speed': 30, 'delay': 0, 'transform': 'translate3d(-768px, 0px, 0px) scale(1, 1) rotate(0deg)'}}
+```
+
+##### animation
+
+`css`格式
+
+```
+{'item':{'type':1, 'speed': 100, 'delay': 5, 'animation':'trans1XY 0.5s linear infinite'}}
+```
+
+##### opacity
+
+`css`格式
+
+```
+{'item': {'type': 0, 'speed': 5, 'delay': 4, 'opacity': '0'}}
+```
+
+##### gif
+
+待定
+
+##### swing
+
+待定
+
+
 
 | 键        | 类型   | 说明                                                         |
 | --------- | ------ | ------------------------------------------------------------ |

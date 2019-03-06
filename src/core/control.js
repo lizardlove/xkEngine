@@ -113,19 +113,7 @@ export default class Control {
 
         flag = self.resource.load(self.pageActive)
 
-        function judge() {
-            if (flag) {
-                self.domBox.load.style.display = "none"
-                self.play(self.utils.scrollTop())
-                console.log('ok')
-            } else {
-                self.utils.requestAnimationFrame(judge)
-            }
-            
-        }
-        setTimeout(function () {
-            self.utils.requestAnimationFrame(judge)
-        }, 500)
+       
         //self.utils.requestAnimationFrame(judge)
 
         //绑定滑动事件
@@ -145,6 +133,20 @@ export default class Control {
             self.play(top)                                                            //执行动画
             
         })
+
+        function judge() {
+            if (flag) {
+                self.play(self.utils.scrollTop())
+                self.domBox.load.style.display = "none"
+                console.log('ok')
+            } else {
+                self.utils.requestAnimationFrame(judge)
+            }
+            
+        }
+        setTimeout(function () {
+            self.utils.requestAnimationFrame(judge)
+        }, 500)
     }
 
     /**
@@ -377,7 +379,7 @@ export default class Control {
 
                 let animate = self.animates[index]
 
-                if (animate.type == 'music') {
+                if (animate.type == 'music' && animate.status == 2 && animate.top <= self.basePointTop) {
                     if (!bool) {
                         animate.pause()
                     } else {
