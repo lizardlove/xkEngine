@@ -240,6 +240,15 @@ export default class Control {
                 if (src) {
                     child[i].setAttribute('src', src)
                 }
+                let grandChild = child[i].children || self.utils.getChildList(child[i])
+                if (grandChild) {
+                    for (let j = 0; j < grandChild.length; j++) {
+                        src = grandChild[j].getAttribute('data-src')
+                        if (src) {
+                            grandChild[j].setAttribute('src',src)
+                        }
+                    }
+                }
             }
         }
     }
@@ -289,7 +298,6 @@ export default class Control {
         offBtn = music.querySelector('#music_box_off')
 
         if (btn) {
-            console.log(btn)
             utils.addClass(onBtn, 'music_display')
             utils.addClass(offBtn, 'music_display')
 
@@ -334,7 +342,6 @@ export default class Control {
             }
 
             function start(e) {
-                console.log('start')
                 let touch = e.touches ? e.touches[0] : e
                 e.stopPropagation()
                 startX = touch.pageX
@@ -342,7 +349,6 @@ export default class Control {
             }
 
             function move(e) {
-                console.log('move')
                 let touch = e.touches ? e.touches[0] : e
 
                 e.stopPropagation()
@@ -358,7 +364,6 @@ export default class Control {
                 endY = touch.pageY
 
                 e.stopPropagation()
-                console.log("music")
                 if ( Math.abs(startX - endX) < 8 || Math.abs(startY - endY) < 8 ) {
                     if (self.domBox.music.bool) {
                         self.domBox.music.bool = false
@@ -571,7 +576,7 @@ export default class Control {
         screenHeight = self.utils.height
 
         startIn = top
-        startPre = top - screenHeight  * 2
+        startPre = top - screenHeight  * 4
         startPre = startPre < 0 ? 0 : startPre
 
         endIn = top + screenHeight
@@ -817,6 +822,7 @@ export default class Control {
 
             if (config) {
                 config = config.replace(/\'/gim, '"');
+                
                 config = JSON.parse(config)
             } else {
                 return     
@@ -835,6 +841,15 @@ export default class Control {
                 }
             } else {
                 for (let item in config) {
+                    let format = {     //格式化的单项动画配置
+                        id: i,
+                        ele: dom,
+                        status: 0, 
+                        top: 0, 
+                        bottom: 0,
+                        type: "",
+                        config: {}
+                    }
                     if (config[item].transform || config[item].animation || config[item].opacity){
                         format.type = "animate"
                     } else if (config[item].gif) {
